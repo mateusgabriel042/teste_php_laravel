@@ -1,5 +1,5 @@
 @extends('backend.layouts.master')
-@section('title','E-SHOP || Banner Page')
+@section('title','Empresa || Banners')
 @section('main-content')
  <!-- DataTales Example -->
  <div class="card shadow mb-4">
@@ -9,8 +9,8 @@
          </div>
      </div>
     <div class="card-header py-3">
-      <h6 class="m-0 font-weight-bold text-primary float-left">Banners List</h6>
-      <a href="{{route('banner.create')}}" class="btn btn-primary btn-sm float-right" data-toggle="tooltip" data-placement="bottom" title="Add User"><i class="fas fa-plus"></i> Add Banner</a>
+      <h6 class="m-0 font-weight-bold text-primary float-left">Banners</h6>
+      <a href="{{route('banner.create')}}" class="btn btn-primary btn-sm float-right" data-toggle="tooltip" data-placement="bottom" title="Add User"><i class="fas fa-plus"></i> Adicionar Banner</a>
     </div>
     <div class="card-body">
       <div class="table-responsive">
@@ -19,11 +19,11 @@
           <thead>
             <tr>
               <th>S.N.</th>
-              <th>Title</th>
+              <th>Titulo</th>
               <th>Slug</th>
-              <th>Photo</th>
+              <th>Foto</th>
               <th>Status</th>
-              <th>Action</th>
+              <th>Ações</th>
             </tr>
           </thead>
           <tfoot>
@@ -31,9 +31,9 @@
               <th>S.N.</th>
               <th>Title</th>
               <th>Slug</th>
-              <th>Photo</th>
+              <th>Foto</th>
               <th>Status</th>
-              <th>Action</th>
+              <th>Ações</th>
               </tr>
           </tfoot>
           <tbody>
@@ -69,7 +69,7 @@
                         <div class="modal-dialog" role="document">
                           <div class="modal-content">
                             <div class="modal-header">
-                              <h5 class="modal-title" id="#delModal{{$user->id}}Label">Delete user</h5>
+                              <h5 class="modal-title" id="#delModal{{$user->id}}Label">Deletar usuário</h5>
                               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                               </button>
@@ -78,7 +78,7 @@
                               <form method="post" action="{{ route('banners.destroy',$user->id) }}">
                                 @csrf 
                                 @method('delete')
-                                <button type="submit" class="btn btn-danger" style="margin:auto; text-align:center">Parmanent delete user</button>
+                                <button type="submit" class="btn btn-danger" style="margin:auto; text-align:center">Excluir usuário permanente</button>
                               </form>
                             </div>
                           </div>
@@ -90,7 +90,7 @@
         </table>
         <span style="float:right">{{$banners->links()}}</span>
         @else
-          <h6 class="text-center">No banners found!!! Please create banner</h6>
+          <h6 class="text-center">Nenhum banner encontrado!!! Por favor, crie um banner</h6>
         @endif
       </div>
     </div>
@@ -153,8 +153,8 @@
               // alert(dataID);
               e.preventDefault();
               swal({
-                    title: "Are you sure?",
-                    text: "Once deleted, you will not be able to recover this data!",
+                    title: "Tem certeza?",
+                    text: "Uma vez excluído, você não poderá recuperar esses dados!",
                     icon: "warning",
                     buttons: true,
                     dangerMode: true,
@@ -163,7 +163,7 @@
                     if (willDelete) {
                        form.submit();
                     } else {
-                        swal("Your data is safe!");
+                        swal("Seus dados estão seguros!");
                     }
                 });
           })

@@ -1,6 +1,6 @@
 @extends('frontend.layouts.master')
 
-@section('title','E-SHOP || PRODUCT PAGE')
+@section('title','Empresa || PÁGINA DO PRODUTO')
 
 @section('main-content')
 	<!-- Breadcrumbs -->
@@ -10,8 +10,8 @@
                 <div class="col-12">
                     <div class="bread-inner">
                         <ul class="bread-list">
-                            <li><a href="index1.html">Home<i class="ti-arrow-right"></i></a></li>
-                            <li class="active"><a href="blog-single.html">Shop Grid</a></li>
+                            <li><a href="{{route('home')}}">Início<i class="ti-arrow-right"></i></a></li>
+                            <li class="active"><a href="blog-single.html">Grade de compras</a></li>
                         </ul>
                     </div>
                 </div>
@@ -30,7 +30,7 @@
                         <div class="shop-sidebar">
                                 <!-- Single Widget -->
                                 <div class="single-widget category">
-                                    <h3 class="title">Categories</h3>
+                                    <h3 class="title">Categorias</h3>
                                     <ul class="categor-list">
 										@php
 											// $category = new Category();
@@ -63,7 +63,7 @@
                                 <!--/ End Single Widget -->
                                 <!-- Shop By Price -->
                                     <div class="single-widget range">
-                                        <h3 class="title">Shop by Price</h3>
+                                        <h3 class="title">Compre por preço</h3>
                                         <div class="price-filter">
                                             <div class="price-filter-inner">
                                                 @php
@@ -72,7 +72,7 @@
                                                 @endphp
                                                 <div id="slider-range" data-min="0" data-max="{{$max}}"></div>
                                                 <div class="product_filter">
-                                                <button type="submit" class="filter_button">Filter</button>
+                                                <button type="submit" class="filter_button">Filtro</button>
                                                 <div class="label-input">
                                                     <span>Range:</span>
                                                     <input style="" type="text" id="amount" readonly/>
@@ -86,7 +86,7 @@
                                     <!--/ End Shop By Price -->
                                 <!-- Single Widget -->
                                 <div class="single-widget recent-post">
-                                    <h3 class="title">Recent post</h3>
+                                    <h3 class="title">Postagem recente</h3>
                                     {{-- {{dd($recent_products)}} --}}
                                     @foreach($recent_products as $product)
                                         <!-- Single Post -->
@@ -112,7 +112,7 @@
                                 <!--/ End Single Widget -->
                                 <!-- Single Widget -->
                                 <div class="single-widget category">
-                                    <h3 class="title">Brands</h3>
+                                    <h3 class="title">Marcas</h3>
                                     <ul class="categor-list">
                                         @php
                                             $brands=DB::table('brands')->orderBy('title','ASC')->where('status','active')->get();
@@ -134,7 +134,7 @@
                                         <div class="single-shorter">
                                             <label>Show :</label>
                                             <select class="show" name="show" onchange="this.form.submit();">
-                                                <option value="">Default</option>
+                                                <option value="">Em falta</option>
                                                 <option value="9" @if(!empty($_GET['show']) && $_GET['show']=='9') selected @endif>09</option>
                                                 <option value="15" @if(!empty($_GET['show']) && $_GET['show']=='15') selected @endif>15</option>
                                                 <option value="21" @if(!empty($_GET['show']) && $_GET['show']=='21') selected @endif>21</option>
@@ -142,9 +142,9 @@
                                             </select>
                                         </div>
                                         <div class="single-shorter">
-                                            <label>Sort By :</label>
+                                            <label>Ordenar por :</label>
                                             <select class='sortBy' name='sortBy' onchange="this.form.submit();">
-                                                <option value="">Default</option>
+                                                <option value="">Em falta</option>
                                                 <option value="title" @if(!empty($_GET['sortBy']) && $_GET['sortBy']=='title') selected @endif>Name</option>
                                                 <option value="price" @if(!empty($_GET['sortBy']) && $_GET['sortBy']=='price') selected @endif>Price</option>
                                                 <option value="category" @if(!empty($_GET['sortBy']) && $_GET['sortBy']=='category') selected @endif>Category</option>
@@ -183,7 +183,7 @@
                                                         <a title="Wishlist" href="{{route('add-to-wishlist',$product->slug)}}" class="wishlist" data-id="{{$product->id}}"><i class=" ti-heart "></i><span>Add to Wishlist</span></a>
                                                     </div>
                                                     <div class="product-action-2">
-                                                        <a title="Add to cart" href="{{route('add-to-cart',$product->slug)}}">Add to cart</a>
+                                                        <a title="Adicionar ao carrinho" href="{{route('add-to-cart',$product->slug)}}">Adicionar ao carrinho</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -199,15 +199,13 @@
                                     </div>
                                 @endforeach
                             @else
-                                    <h4 class="text-warning" style="margin:100px auto;">There are no products.</h4>
+                                    <h4 class="text-warning" style="margin:100px auto;">Não há produtos.</h4>
                             @endif
-
-
 
                         </div>
                         <div class="row">
                             <div class="col-md-12 justify-content-center d-flex">
-                                {{$products->appends($_GET)->links()}}
+                                {{--$products->appends($_GET)->links()--}}
                             </div>
                           </div>
 
@@ -218,8 +216,6 @@
     </form>
 
     <!--/ End Product Style 1  -->
-
-
 
     <!-- Modal -->
     @if($products)
@@ -291,7 +287,7 @@
                                             </div>
                                             @if($product->size)
                                                 <div class="size">
-                                                    <h4>Size</h4>
+                                                    <h4>Tamanho</h4>
                                                     <ul>
                                                         @php
                                                             $sizes=explode(',',$product->size);
@@ -306,7 +302,7 @@
                                             <div class="size">
                                                 <div class="row">
                                                     <div class="col-lg-6 col-12">
-                                                        <h5 class="title">Size</h5>
+                                                        <h5 class="title">Tamanho</h5>
                                                         <select>
                                                             @php
                                                             $sizes=explode(',',$product->size);
@@ -318,7 +314,7 @@
                                                         </select>
                                                     </div>
                                                     {{-- <div class="col-lg-6 col-12">
-                                                        <h5 class="title">Color</h5>
+                                                        <h5 class="title">Cor</h5>
                                                         <select>
                                                             <option selected="selected">orange</option>
                                                             <option>purple</option>
@@ -349,7 +345,7 @@
                                                     <!--/ End Input Order -->
                                                 </div>
                                                 <div class="add-to-cart">
-                                                    <button type="submit" class="btn">Add to cart</button>
+                                                    <button type="submit" class="btn">Adicionar ao carrinho</button>
                                                     <a href="{{route('add-to-wishlist',$product->slug)}}" class="btn min"><i class="ti-heart"></i></a>
                                                 </div>
                                             </form>

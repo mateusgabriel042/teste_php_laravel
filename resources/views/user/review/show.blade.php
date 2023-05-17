@@ -11,15 +11,15 @@
     <table class="table table-striped table-hover">
       <thead>
         <tr>
-            <th>S.N.</th>
-            <th>Order No.</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Quantity</th>
-            <th>Charge</th>
-            <th>Total Amount</th>
-            <th>Status</th>
-            <th>Action</th>
+          <th>S.N.</th>
+          <th>Ordem</th>
+          <th>Nome</th>
+          <th>Email</th>
+          <th>Quantidade</th>
+          <th>Carregar</th>
+          <th>Valor total</th>
+          <th>Status</th>
+          <th>Ações</th>
         </tr>
       </thead>
       <tbody>

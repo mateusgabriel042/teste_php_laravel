@@ -1,6 +1,6 @@
 @extends('frontend.layouts.master')
 
-@section('title','Checkout page')
+@section('title','Página de Confirmação')
 
 @section('main-content')
 
@@ -11,8 +11,8 @@
                 <div class="col-12">
                     <div class="bread-inner">
                         <ul class="bread-list">
-                            <li><a href="{{route('home')}}">Home<i class="ti-arrow-right"></i></a></li>
-                            <li class="active"><a href="javascript:void(0)">Checkout</a></li>
+                            <li><a href="{{route('home')}}">Início<i class="ti-arrow-right"></i></a></li>
+                            <li class="active"><a href="javascript:void(0)">Comfirmar</a></li>
                         </ul>
                     </div>
                 </div>
@@ -30,13 +30,13 @@
 
                         <div class="col-lg-8 col-12">
                             <div class="checkout-form">
-                                <h2>Make Your Checkout Here</h2>
-                                <p>Please register in order to checkout more quickly</p>
+                                <h2>Faça seu Checkout Aqui</h2>
+                                <p>Por favor, registre-se para fazer o checkout mais rapidamente</p>
                                 <!-- Form -->
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 col-12">
                                         <div class="form-group">
-                                            <label>First Name<span>*</span></label>
+                                            <label>Primeiro nome<span>*</span></label>
                                             <input type="text" name="first_name" placeholder="" value="{{old('first_name')}}" value="{{old('first_name')}}">
                                             @error('first_name')
                                                 <span class='text-danger'>{{$message}}</span>
@@ -45,7 +45,7 @@
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-12">
                                         <div class="form-group">
-                                            <label>Last Name<span>*</span></label>
+                                            <label>Sobrenome<span>*</span></label>
                                             <input type="text" name="last_name" placeholder="" value="{{old('lat_name')}}">
                                             @error('last_name')
                                                 <span class='text-danger'>{{$message}}</span>
@@ -54,7 +54,7 @@
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-12">
                                         <div class="form-group">
-                                            <label>Email Address<span>*</span></label>
+                                            <label>Email<span>*</span></label>
                                             <input type="email" name="email" placeholder="" value="{{old('email')}}">
                                             @error('email')
                                                 <span class='text-danger'>{{$message}}</span>
@@ -63,7 +63,7 @@
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-12">
                                         <div class="form-group">
-                                            <label>Phone Number <span>*</span></label>
+                                            <label>Telefone<span>*</span></label>
                                             <input type="number" name="phone" placeholder="" required value="{{old('phone')}}">
                                             @error('phone')
                                                 <span class='text-danger'>{{$message}}</span>
@@ -324,7 +324,7 @@
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-12">
                                         <div class="form-group">
-                                            <label>Address Line 1<span>*</span></label>
+                                            <label>Endereço Linha 1<span>*</span></label>
                                             <input type="text" name="address1" placeholder="" value="{{old('address1')}}">
                                             @error('address1')
                                                 <span class='text-danger'>{{$message}}</span>
@@ -333,7 +333,7 @@
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-12">
                                         <div class="form-group">
-                                            <label>Address Line 2</label>
+                                            <label>Endereço Linha 2</label>
                                             <input type="text" name="address2" placeholder="" value="{{old('address2')}}">
                                             @error('address2')
                                                 <span class='text-danger'>{{$message}}</span>
@@ -342,7 +342,7 @@
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-12">
                                         <div class="form-group">
-                                            <label>Postal Code</label>
+                                            <label>Código postal</label>
                                             <input type="text" name="post_code" placeholder="" value="{{old('post_code')}}">
                                             @error('post_code')
                                                 <span class='text-danger'>{{$message}}</span>
@@ -358,26 +358,26 @@
                             <div class="order-details">
                                 <!-- Order Widget -->
                                 <div class="single-widget">
-                                    <h2>CART  TOTALS</h2>
+                                    <h2>TOTAIS DO CARRINHO</h2>
                                     <div class="content">
                                         <ul>
 										    <li class="order_subtotal" data-price="{{Helper::totalCartPrice()}}">Cart Subtotal<span>${{number_format(Helper::totalCartPrice(),2)}}</span></li>
                                             <li class="shipping">
-                                                Shipping Cost
+                                                Frete
                                                 @if(count(Helper::shipping())>0 && Helper::cartCount()>0)
                                                     <select name="shipping" class="nice-select">
-                                                        <option value="">Select your address</option>
+                                                        <option value="">Selecione seu endereço</option>
                                                         @foreach(Helper::shipping() as $shipping)
                                                         <option value="{{$shipping->id}}" class="shippingOption" data-price="{{$shipping->price}}">{{$shipping->type}}: ${{$shipping->price}}</option>
                                                         @endforeach
                                                     </select>
                                                 @else 
-                                                    <span>Free</span>
+                                                    <span>Grátis</span>
                                                 @endif
                                             </li>
                                             
                                             @if(session('coupon'))
-                                            <li class="coupon_price" data-price="{{session('coupon')['value']}}">You Save<span>${{number_format(session('coupon')['value'],2)}}</span></li>
+                                            <li class="coupon_price" data-price="{{session('coupon')['value']}}">Você salva<span>${{number_format(session('coupon')['value'],2)}}</span></li>
                                             @endif
                                             @php
                                                 $total_amount=Helper::totalCartPrice();
@@ -399,9 +399,9 @@
                                     <h2>Payments</h2>
                                     <div class="content">
                                         <div class="checkbox">
-                                            {{-- <label class="checkbox-inline" for="1"><input name="updates" id="1" type="checkbox"> Check Payments</label> --}}
+                                            {{-- <label class="checkbox-inline" for="1"><input name="updates" id="1" type="checkbox"> Verificar pagamentos</label> --}}
                                             <form-group>
-                                                <input name="payment_method"  type="radio" value="cod"> <label> Cash On Delivery</label><br>
+                                                <input name="payment_method"  type="radio" value="cod"> <label> Dinheiro na entrega</label><br>
                                                 <input name="payment_method"  type="radio" value="paypal"> <label> PayPal</label> 
                                             </form-group>
                                             
@@ -420,7 +420,7 @@
                                 <div class="single-widget get-button">
                                     <div class="content">
                                         <div class="button">
-                                            <button type="submit" class="btn">proceed to checkout</button>
+                                            <button type="submit" class="btn">fazer o check-out</button>
                                         </div>
                                     </div>
                                 </div>
@@ -434,49 +434,49 @@
     <!--/ End Checkout -->
     
     <!-- Start Shop Services Area  -->
-    <section class="shop-services section home">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3 col-md-6 col-12">
-                    <!-- Start Single Service -->
-                    <div class="single-service">
-                        <i class="ti-rocket"></i>
-                        <h4>Free shiping</h4>
-                        <p>Orders over $100</p>
-                    </div>
-                    <!-- End Single Service -->
-                </div>
-                <div class="col-lg-3 col-md-6 col-12">
-                    <!-- Start Single Service -->
-                    <div class="single-service">
-                        <i class="ti-reload"></i>
-                        <h4>Free Return</h4>
-                        <p>Within 30 days returns</p>
-                    </div>
-                    <!-- End Single Service -->
-                </div>
-                <div class="col-lg-3 col-md-6 col-12">
-                    <!-- Start Single Service -->
-                    <div class="single-service">
-                        <i class="ti-lock"></i>
-                        <h4>Sucure Payment</h4>
-                        <p>100% secure payment</p>
-                    </div>
-                    <!-- End Single Service -->
-                </div>
-                <div class="col-lg-3 col-md-6 col-12">
-                    <!-- Start Single Service -->
-                    <div class="single-service">
-                        <i class="ti-tag"></i>
-                        <h4>Best Peice</h4>
-                        <p>Guaranteed price</p>
-                    </div>
-                    <!-- End Single Service -->
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- End Shop Services -->
+    <section class="shop-services section">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3 col-md-6 col-12">
+					<!-- Start Single Service -->
+					<div class="single-service">
+						<i class="ti-rocket"></i>
+						<h4>Envio Grátis</h4>
+						<p>Pedidos acima de $ 100</p>
+					</div>
+					<!-- End Single Service -->
+				</div>
+				<div class="col-lg-3 col-md-6 col-12">
+					<!-- Start Single Service -->
+					<div class="single-service">
+						<i class="ti-reload"></i>
+						<h4>Devolução Gratuita</h4>
+						<p>Dentro de 30 dias devoluções</p>
+					</div>
+					<!-- End Single Service -->
+				</div>
+				<div class="col-lg-3 col-md-6 col-12">
+					<!-- Start Single Service -->
+					<div class="single-service">
+						<i class="ti-lock"></i>
+						<h4>Pagamento seguro</h4>
+						<p>Pagamento 100% seguro</p>
+					</div>
+					<!-- End Single Service -->
+				</div>
+				<div class="col-lg-3 col-md-6 col-12">
+					<!-- Start Single Service -->
+					<div class="single-service">
+						<i class="ti-tag"></i>
+						<h4>Melhor preço</h4>
+						<p>Preço garantido</p>
+					</div>
+					<!-- End Single Service -->
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- End Shop Services Area -->
     
     <!-- Start Shop Newsletter  -->
     <section class="shop-newsletter section">
@@ -486,11 +486,11 @@
                     <div class="col-lg-8 offset-lg-2 col-12">
                         <!-- Start Newsletter Inner -->
                         <div class="inner">
-                            <h4>Newsletter</h4>
-                            <p> Subscribe to our newsletter and get <span>10%</span> off your first purchase</p>
+                            <h4>Boletim de Notícias</h4>
+                            <p> Assine nossa newsletter e receba <span>10%</span> desconto na sua primeira compra</p>
                             <form action="mail/mail.php" method="get" target="_blank" class="newsletter-inner">
-                                <input name="EMAIL" placeholder="Your email address" required="" type="email">
-                                <button class="btn">Subscribe</button>
+                                <input name="EMAIL" placeholder="Seu endereço de email" required="" type="email">
+                                <button class="btn">Se inscrever</button>
                             </form>
                         </div>
                         <!-- End Newsletter Inner -->

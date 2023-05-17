@@ -6,17 +6,17 @@
        @include('backend.layouts.notification')
     </div>
   </div>
-  <h5 class="card-header">Messages</h5>
+  <h5 class="card-header">Mensagem</h5>
   <div class="card-body">
     @if(count($messages)>0)
     <table class="table message-table" id="message-dataTable">
       <thead>
         <tr>
           <th scope="col">ID</th>
-          <th scope="col">Name</th>
-          <th scope="col">Subject</th>
-          <th scope="col">Date</th>
-          <th scope="col">Action</th>
+          <th scope="col">Nome</th>
+          <th scope="col">Para</th>
+          <th scope="col">Data</th>
+          <th scope="col">Ações</th>
         </tr>
       </thead>
       <tbody>
@@ -32,7 +32,7 @@
             <form method="POST" action="{{route('message.destroy',[$message->id])}}">
               @csrf 
               @method('delete')
-                  <button class="btn btn-danger btn-sm dltBtn" data-id={{$message->id}} style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class="fas fa-trash-alt"></i></button>
+                  <button class="btn btn-danger btn-sm dltBtn" data-id={{$message->id}} style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" data-placement="bottom" title="Deletar"><i class="fas fa-trash-alt"></i></button>
             </form>
           </td>
         </tr>
@@ -44,7 +44,7 @@
       {{$messages->links()}}
     </nav>
     @else
-      <h2>Messages Empty!</h2>
+      <h2>Mensagens vazias!</h2>
     @endif
   </div>
 </div>
@@ -102,19 +102,19 @@
             // alert(dataID);
             e.preventDefault();
             swal({
-                  title: "Are you sure?",
-                  text: "Once deleted, you will not be able to recover this data!",
-                  icon: "warning",
-                  buttons: true,
-                  dangerMode: true,
-              })
-              .then((willDelete) => {
-                  if (willDelete) {
-                    form.submit();
-                  } else {
-                      swal("Your data is safe!");
-                  }
-              });
+                    title: "Tem certeza?",
+                    text: "Uma vez excluído, você não poderá recuperar esses dados!",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                       form.submit();
+                    } else {
+                        swal("Seus dados estão seguros!");
+                    }
+                });
         })
     })
   </script>

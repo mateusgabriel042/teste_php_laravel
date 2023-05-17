@@ -23,8 +23,8 @@
               <div class="col-lg-6">
                 <div class="p-5">
                   <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-2">Forgot Your Password?</h1>
-                    <p class="mb-4">We get it, stuff happens. Just enter your email address below and we'll send you a link to reset your password!</p>
+                    <h1 class="h4 text-gray-900 mb-2">Esqueceu sua senha?</h1>
+                    <p class="mb-4">Nós entendemos, coisas acontecem. Basta digitar seu endereço de e-mail abaixo e enviaremos um link para redefinir sua senha!</p>
                   </div>
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
@@ -42,12 +42,12 @@
                         @enderror
                     </div>
                     <button type="submit" class="btn btn-primary btn-user btn-block">
-                      Reset Password
+                      Redefinir senha
                     </button>
                   </form>
                   <hr>
                   <div class="text-center">
-                    <a class="small" href="{{route('login')}}">Already have an account? Login!</a>
+                    <a class="small" href="{{route('login')}}">Já tem uma conta? Login!</a>
                   </div>
                 </div>
               </div>

@@ -9,8 +9,8 @@
          </div>
      </div>
     <div class="card-header py-3">
-      <h6 class="m-0 font-weight-bold text-primary float-left">Post Lists</h6>
-      <a href="{{route('post.create')}}" class="btn btn-primary btn-sm float-right" data-toggle="tooltip" data-placement="bottom" title="Add User"><i class="fas fa-plus"></i> Add Post</a>
+      <h6 class="m-0 font-weight-bold text-primary float-left">Lista de Postagens</h6>
+      <a href="{{route('post.create')}}" class="btn btn-primary btn-sm float-right" data-toggle="tooltip" data-placement="bottom" title="Add User"><i class="fas fa-plus"></i> Adicionar Postagem</a>
     </div>
     <div class="card-body">
       <div class="table-responsive">
@@ -19,13 +19,13 @@
           <thead>
             <tr>
               <th>S.N.</th>
-              <th>Title</th>
-              <th>Category</th>
-              <th>Tag</th>
-              <th>Author</th>
-              <th>Photo</th>
+              <th>Titulo</th>
+              <th>Categoria</th>
+              <th>Etiqueta</th>
+              <th>Assunto</th>
+              <th>Foto</th>
               <th>Status</th>
-              <th>Action</th>
+              <th>Ações</th>
             </tr>
           </thead>
           <tfoot>
@@ -151,8 +151,8 @@
               // alert(dataID);
               e.preventDefault();
               swal({
-                    title: "Are you sure?",
-                    text: "Once deleted, you will not be able to recover this data!",
+                    title: "Tem certeza?",
+                    text: "Uma vez excluído, você não poderá recuperar esses dados!",
                     icon: "warning",
                     buttons: true,
                     dangerMode: true,
@@ -161,7 +161,7 @@
                     if (willDelete) {
                        form.submit();
                     } else {
-                        swal("Your data is safe!");
+                        swal("Seus dados estão seguros!");
                     }
                 });
           })

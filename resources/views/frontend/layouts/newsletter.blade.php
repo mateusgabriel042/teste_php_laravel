@@ -7,12 +7,12 @@
                 <div class="col-lg-8 offset-lg-2 col-12">
                     <!-- Start Newsletter Inner -->
                     <div class="inner">
-                        <h4>Newsletter</h4>
-                        <p> Subscribe to our newsletter and get <span>10%</span> off your first purchase</p>
+                        <h4>Boletim de Notícias</h4>
+                        <p>Assine nossa newsletter e receba <span>10%</span> desconto na sua primeira compra</p>
                         <form action="{{route('subscribe')}}" method="post" class="newsletter-inner">
                             @csrf
-                            <input name="email" placeholder="Your email address" required="" type="email">
-                            <button class="btn" type="submit">Subscribe</button>
+                            <input name="email" placeholder="Seu endereço de email" required="" type="email">
+                            <button class="btn" type="submit">Se inscrever</button>
                         </form>
                     </div>
                     <!-- End Newsletter Inner -->

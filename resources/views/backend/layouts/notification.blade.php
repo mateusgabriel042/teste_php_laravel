@@ -9,6 +9,6 @@
 @if(session('error'))
     <div class="alert alert-danger alert-dismissable fade show">
         <button class="close" data-dismiss="alert" aria-label="Close">×</button>
-        {{session('error')}}
+        {!!session('error')!!}
     </div>
 @endif

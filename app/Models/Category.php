@@ -19,7 +19,7 @@ class Category extends Model
         return Category::whereIn('id',$cat_id)->update(['is_parent'=>1]);
     }
     public static function getChildByParentID($id){
-        return Category::where('parent_id',$id)->orderBy('id','ASC')->pluck('title','id');
+        return ProductSubCategory::where('parent_category',$id)->orderBy('id','ASC')->pluck('name','id');
     }
 
     public function child_cat(){

@@ -135,8 +135,8 @@
               // alert(dataID);
               e.preventDefault();
               swal({
-                    title: "Are you sure?",
-                    text: "Once deleted, you will not be able to recover this data!",
+                    title: "Tem certeza?",
+                    text: "Uma vez excluído, você não poderá recuperar esses dados!",
                     icon: "warning",
                     buttons: true,
                     dangerMode: true,
@@ -145,7 +145,7 @@
                     if (willDelete) {
                        form.submit();
                     } else {
-                        swal("Your data is safe!");
+                        swal("Seus dados estão seguros!");
                     }
                 });
           })

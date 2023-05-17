@@ -1,6 +1,11 @@
 <?php
 
+use App\Helper\Helpers;
+use App\User;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\Api\V1\AccountMeliController;
+use App\Http\Controllers\AnnouncementController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,8 +27,8 @@ Route::get('user/logout','FrontendController@logout')->name('user.logout');
 Route::get('user/register','FrontendController@register')->name('register.form');
 Route::post('user/register','FrontendController@registerSubmit')->name('register.submit');
 // Reset password
-Route::post('password-reset', 'FrontendController@showResetForm')->name('password.reset'); 
-// Socialite 
+Route::post('password-reset', 'FrontendController@showResetForm')->name('password.reset');
+// Socialite
 Route::get('login/{provider}/', 'Auth\LoginController@redirect')->name('login.redirect');
 Route::get('login/{provider}/callback/', 'Auth\LoginController@Callback')->name('login.callback');
 
@@ -73,6 +78,21 @@ Route::post('/blog/filter','FrontendController@blogFilter')->name('blog.filter')
 Route::get('blog-cat/{slug}','FrontendController@blogByCategory')->name('blog.category');
 Route::get('blog-tag/{slug}','FrontendController@blogByTag')->name('blog.tag');
 
+//Apis
+Route::get('/api/casasbahia','ApiController@casasbahia')->name('api.casasbahia');
+Route::get('/api/mercadolivre','ApiController@mercadolibrarie')->name('api.mercadolivre');
+Route::get('/api/amazon','ApiController@amazon')->name('api.amazon');
+Route::get('/api/magalu','ApiController@magalu')->name('api.magalu');
+Route::get('/api/olist','ApiController@olist')->name('api.olist');
+Route::get('/api/shopee','ApiController@shopee')->name('api.shopee');
+Route::get('/api/americanas','ApiController@americanas')->name('api.americanas');
+
+
+//...Teste
+Route::get('/americanas','Functions@americanas');
+Route::get('/shopee','Functions@shopee');
+
+
 // NewsLetter
 Route::post('/subscribe','FrontendController@subscribe')->name('subscribe');
 
@@ -80,7 +100,7 @@ Route::post('/subscribe','FrontendController@subscribe')->name('subscribe');
 Route::resource('/review','ProductReviewController');
 Route::post('product/{slug}/review','ProductReviewController@store')->name('review.store');
 
-// Post Comment 
+// Post Comment
 Route::post('post/{slug}/comment','PostCommentController@store')->name('post-comment.store');
 Route::resource('/comment','PostCommentController');
 // Coupon
@@ -90,7 +110,7 @@ Route::get('payment', 'PayPalController@payment')->name('payment');
 Route::get('cancel', 'PayPalController@cancel')->name('payment.cancel');
 Route::get('payment/success', 'PayPalController@success')->name('payment.success');
 
-
+Route::get('order/pdf/{id}','OrderController@pdf')->name('order.pdf');
 
 // Backend section start
 
@@ -112,6 +132,9 @@ Route::group(['prefix'=>'/admin','middleware'=>['auth','admin']],function(){
     Route::resource('/category','CategoryController');
     // Product
     Route::resource('/product','ProductController');
+    Route::get('/import-product', [\App\Http\Controllers\ProductController::class, 'importProduct'])->name('products.import');
+    Route::get('/products-publish', [\App\Http\Controllers\ProductToApiController::class, 'index'])->name('products.index.to.api');
+    Route::post('/import-product', [\App\Http\Controllers\ProductController::class, 'importExcel'])->name('products.import.post');
     // Ajax for sub category
     Route::post('/category/{id}/child','CategoryController@getChildByParent');
     // POST category
@@ -141,15 +164,16 @@ Route::group(['prefix'=>'/admin','middleware'=>['auth','admin']],function(){
     // Password Change
     Route::get('change-password', 'AdminController@changePassword')->name('change.password.form');
     Route::post('change-password', 'AdminController@changPasswordStore')->name('change.password');
+
+    // Post Multiuser
+    Route::resource('/multiuser','Api\V1\AccountMeliController');
+    Route::get('/multiuser/alter/account/{id}','Api\V1\AccountMeliController@alterAccount')->name('multiuser.alter.account');
+
+    // Announcement
+    Route::get('/announcement/alter','AnnouncementController@alter')->name('announcement.alter');
+    Route::get('/announcement/edit/{id}/{id_api}', 'AnnouncementController@edit')->name('announcement.edit2');
+    Route::resource('/announcement','AnnouncementController');
 });
-
-
-
-
-
-
-
-
 
 
 // User section start
@@ -167,19 +191,49 @@ Route::group(['prefix'=>'/user','middleware'=>['user']],function(){
     Route::delete('/user-review/delete/{id}','HomeController@productReviewDelete')->name('user.productreview.delete');
     Route::get('/user-review/edit/{id}','HomeController@productReviewEdit')->name('user.productreview.edit');
     Route::patch('/user-review/update/{id}','HomeController@productReviewUpdate')->name('user.productreview.update');
-    
+
     // Post comment
     Route::get('user-post/comment','HomeController@userComment')->name('user.post-comment.index');
+
     Route::delete('user-post/comment/delete/{id}','HomeController@userCommentDelete')->name('user.post-comment.delete');
     Route::get('user-post/comment/edit/{id}','HomeController@userCommentEdit')->name('user.post-comment.edit');
     Route::patch('user-post/comment/udpate/{id}','HomeController@userCommentUpdate')->name('user.post-comment.update');
-    
+
     // Password Change
     Route::get('change-password', 'HomeController@changePassword')->name('user.change.password.form');
     Route::post('change-password', 'HomeController@changPasswordStore')->name('change.password');
 
 });
 
+Route::get('user-post/comment/unlink',[\App\Http\Controllers\PostCommentController::class, 'ReadComment'])->name('user.post-comment.code');
+Route::get('review-product-users/',[\App\Http\Controllers\ProductReviewController::class, 'ReviewUsers'])->name('user.post-review');
+
+
 Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
     \UniSharp\LaravelFilemanager\Lfm::routes();
 });
+
+Route::post('/publish', [\App\Http\Controllers\ProductController::class, 'publishProduct'])->name('products.publish');
+Route::get('/getSuggestion', [\App\Http\Controllers\CategoryController::class, 'getSuggestion'])->name('category.suggestion');
+Route::get("/post", function(){
+
+    return base_path();
+     return Helpers::getImages("BOMBA AGUA FERRARI PERIF.AQUAPUMP 1/2CV 127V");
+    // User::insert([
+    //     'name' => "Code",
+    //     'email' => "admin@gmail.com",
+    //     'email_verified_at' => now(),
+    //     'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+    //     'role' => 'admin'
+    // ]);
+});
+
+Route::group(['prefix' => 'callback'], function () {
+    Route::get('/mercadolivre', [\App\Http\Controllers\CallbackApiController::class, 'authorizeMercadoLivre']);
+    Route::get('/mercadolivre/refresh', [\App\Http\Controllers\CallbackApiController::class, 'refreshMercadoLivre']);
+});
+
+//Product Import
+Route::get('/import/form', [ProductController::class, 'importForm'])->name('product.import');
+Route::post('/import', [ProductController::class, 'import'])->name('product.import.post');
+Route::post('/importToApi', [AnnouncementController::class, 'import'])->name('announcement.import.post');

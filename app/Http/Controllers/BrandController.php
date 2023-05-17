@@ -35,7 +35,7 @@ class BrandController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    { 
         $this->validate($request,[
             'title'=>'string|required',
         ]);

@@ -19,21 +19,21 @@
           <thead>
             <tr>
               <th>S.N.</th>
-              <th>Coupon Code</th>
-              <th>Type</th>
-              <th>Value</th>
+              <th>Código do Cupom</th>
+              <th>Tipo</th>
+              <th>Valor</th>
               <th>Status</th>
-              <th>Action</th>
+              <th>Ações</th>
             </tr>
           </thead>
           <tfoot>
             <tr>
                 <th>S.N.</th>
-                <th>Coupon Code</th>
-                <th>Type</th>
-                <th>Value</th>
+                <th>Código do Cupom</th>
+                <th>Tipo</th>
+                <th>Valor</th>
                 <th>Status</th>
-                <th>Action</th>
+                <th>Ações</th>
               </tr>
           </tfoot>
           <tbody>
@@ -74,7 +74,7 @@
                         <div class="modal-dialog" role="document">
                           <div class="modal-content">
                             <div class="modal-header">
-                              <h5 class="modal-title" id="#delModal{{$user->id}}Label">Delete user</h5>
+                              <h5 class="modal-title" id="#delModal{{$user->id}}Label">Deletar Usuário</h5>
                               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                               </button>
@@ -83,7 +83,7 @@
                               <form method="post" action="{{ route('banners.destroy',$user->id) }}">
                                 @csrf 
                                 @method('delete')
-                                <button type="submit" class="btn btn-danger" style="margin:auto; text-align:center">Parmanent delete user</button>
+                                <button type="submit" class="btn btn-danger" style="margin:auto; text-align:center">Excluir usuário permanente</button>
                               </form>
                             </div>
                           </div>
@@ -95,7 +95,7 @@
         </table>
         <span style="float:right">{{$coupons->links()}}</span>
         @else
-          <h6 class="text-center">No Coupon found!!! Please create coupon</h6>
+          <h6 class="text-center">Nenhum cupom encontrado!!! Por favor, crie um cupom</h6>
         @endif
       </div>
     </div>
@@ -158,8 +158,8 @@
               // alert(dataID);
               e.preventDefault();
               swal({
-                    title: "Are you sure?",
-                    text: "Once deleted, you will not be able to recover this data!",
+                    title: "Tem certeza?",
+                    text: "Uma vez excluído, você não poderá recuperar esses dados!",
                     icon: "warning",
                     buttons: true,
                     dangerMode: true,
@@ -168,7 +168,7 @@
                     if (willDelete) {
                        form.submit();
                     } else {
-                        swal("Your data is safe!");
+                        swal("Seus dados estão seguros!");
                     }
                 });
           })

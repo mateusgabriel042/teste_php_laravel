@@ -1,6 +1,6 @@
 @extends('frontend.layouts.master')
 
-@section('title','E-SHOP || About Us')
+@section('title','Empresa || About Us')
 
 @section('main-content')
 
@@ -11,8 +11,8 @@
 				<div class="col-12">
 					<div class="bread-inner">
 						<ul class="bread-list">
-							<li><a href="index1.html">Home<i class="ti-arrow-right"></i></a></li>
-							<li class="active"><a href="blog-single.html">About Us</a></li>
+							<li><a href="index1.html">Início<i class="ti-arrow-right"></i></a></li>
+							<li class="active"><a href="blog-single.html">Sobre nós</a></li>
 						</ul>
 					</div>
 				</div>
@@ -30,11 +30,11 @@
 							@php
 								$settings=DB::table('settings')->get();
 							@endphp
-							<h3>Welcome To <span>Eshop</span></h3>
+							<h3>Bem Vindo a <span>Empresa</span></h3>
 							<p>@foreach($settings as $data) {{$data->description}} @endforeach</p>
 							<div class="button">
-								<a href="{{route('blog')}}" class="btn">Our Blog</a>
-								<a href="{{route('contact')}}" class="btn primary">Contact Us</a>
+								<a href="{{route('blog')}}" class="btn">Nosso blog</a>
+								<a href="{{route('contact')}}" class="btn primary">Contate-nos</a>
 							</div>
 						</div>
 					</div>
@@ -60,8 +60,8 @@
 					<!-- Start Single Service -->
 					<div class="single-service">
 						<i class="ti-rocket"></i>
-						<h4>Free shiping</h4>
-						<p>Orders over $100</p>
+						<h4>Envio Grátis</h4>
+						<p>Pedidos acima de $ 100</p>
 					</div>
 					<!-- End Single Service -->
 				</div>
@@ -69,8 +69,8 @@
 					<!-- Start Single Service -->
 					<div class="single-service">
 						<i class="ti-reload"></i>
-						<h4>Free Return</h4>
-						<p>Within 30 days returns</p>
+						<h4>Devolução Gratuita</h4>
+						<p>Dentro de 30 dias devoluções</p>
 					</div>
 					<!-- End Single Service -->
 				</div>
@@ -78,8 +78,8 @@
 					<!-- Start Single Service -->
 					<div class="single-service">
 						<i class="ti-lock"></i>
-						<h4>Sucure Payment</h4>
-						<p>100% secure payment</p>
+						<h4>Pagamento seguro</h4>
+						<p>Pagamento 100% seguro</p>
 					</div>
 					<!-- End Single Service -->
 				</div>
@@ -87,8 +87,8 @@
 					<!-- Start Single Service -->
 					<div class="single-service">
 						<i class="ti-tag"></i>
-						<h4>Best Peice</h4>
-						<p>Guaranteed price</p>
+						<h4>Melhor preço</h4>
+						<p>Preço garantido</p>
 					</div>
 					<!-- End Single Service -->
 				</div>

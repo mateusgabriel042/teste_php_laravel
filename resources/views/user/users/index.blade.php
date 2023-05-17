@@ -9,7 +9,7 @@
          </div>
      </div>
     <div class="card-header py-3">
-      <h6 class="m-0 font-weight-bold text-primary float-left">Users List</h6>
+      <h6 class="m-0 font-weight-bold text-primary float-left">Lista de Usuários</h6>
       <a href="{{route('users.create')}}" class="btn btn-primary btn-sm float-right" data-toggle="tooltip" data-placement="bottom" title="Add User"><i class="fas fa-plus"></i> Add User</a>
     </div>
     <div class="card-body">
@@ -20,23 +20,23 @@
               <th>S.N.</th>
               <th>Name</th>
               <th>Email</th>
-              <th>Photo</th>
-              <th>Join Date</th>
-              <th>Role</th>
+              <th>Foto</th>
+              <th>Data de Cadastro</th>
+              <th>Papel</th>
               <th>Status</th>
-              <th>Action</th>
+              <th>Ações</th>
             </tr>
           </thead>
           <tfoot>
             <tr>
-                <th>S.N.</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Photo</th>
-                <th>Join Date</th>
-                <th>Role</th>
-                <th>Status</th>
-                <th>Action</th>
+              <th>S.N.</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Foto</th>
+              <th>Data de Cadastro</th>
+              <th>Papel</th>
+              <th>Status</th>
+              <th>Ações</th>
               </tr>
           </tfoot>
           <tbody>
@@ -66,7 +66,7 @@
                     <form method="POST" action="{{route('users.destroy',[$user->id])}}">
                       @csrf 
                       @method('delete')
-                          <button class="btn btn-danger btn-sm dltBtn" data-id={{$user->id}} style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class="fas fa-trash-alt"></i></button>
+                          <button class="btn btn-danger btn-sm dltBtn" data-id={{$user->id}} style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" data-placement="bottom" title="Deletar"><i class="fas fa-trash-alt"></i></button>
                         </form>
                     </td>
                     {{-- Delete Modal --}}
@@ -74,7 +74,7 @@
                         <div class="modal-dialog" role="document">
                           <div class="modal-content">
                             <div class="modal-header">
-                              <h5 class="modal-title" id="#delModal{{$user->id}}Label">Delete user</h5>
+                              <h5 class="modal-title" id="#delModal{{$user->id}}Label">Deletar usuário</h5>
                               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                               </button>
@@ -83,7 +83,7 @@
                               <form method="post" action="{{ route('users.destroy',$user->id) }}">
                                 @csrf 
                                 @method('delete')
-                                <button type="submit" class="btn btn-danger" style="margin:auto; text-align:center">Parmanent delete user</button>
+                                <button type="submit" class="btn btn-danger" style="margin:auto; text-align:center">Excluir usuário permanente</button>
                               </form>
                             </div>
                           </div>
@@ -148,8 +148,8 @@
               // alert(dataID);
               e.preventDefault();
               swal({
-                    title: "Are you sure?",
-                    text: "Once deleted, you will not be able to recover this data!",
+                    title: "Tem certeza?",
+                    text: "Uma vez excluído, você não poderá recuperar esses dados!",
                     icon: "warning",
                     buttons: true,
                     dangerMode: true,
@@ -158,7 +158,7 @@
                     if (willDelete) {
                        form.submit();
                     } else {
-                        swal("Your data is safe!");
+                        swal("Seus dados estão seguros!");
                     }
                 });
           })

@@ -1,6 +1,6 @@
 @extends('frontend.layouts.master')
 
-@section('title','E-SHOP || Order Track Page')
+@section('title','Empresa')
 
 @section('main-content')
     <!-- Breadcrumbs -->
@@ -10,7 +10,7 @@
                 <div class="col-12">
                     <div class="bread-inner">
                         <ul class="bread-list">
-                            <li><a href="{{route('home')}}">Home<i class="ti-arrow-right"></i></a></li>
+                            <li><a href="{{route('home')}}">Início<i class="ti-arrow-right"></i></a></li>
                             <li class="active"><a href="javascript:void(0);">Order Track</a></li>
                         </ul>
                     </div>

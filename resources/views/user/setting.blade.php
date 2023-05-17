@@ -115,7 +115,7 @@
 
     $(document).ready(function() {
     $('#summary').summernote({
-      placeholder: "Write short description.....",
+      placeholder: "Escreva uma breve descrição.....",
         tabsize: 2,
         height: 150
     });
@@ -123,14 +123,14 @@
 
     $(document).ready(function() {
       $('#quote').summernote({
-        placeholder: "Write short Quote.....",
+        placeholder: "Escreva um orçamento curto.....",
           tabsize: 2,
           height: 100
       });
     });
     $(document).ready(function() {
       $('#description').summernote({
-        placeholder: "Write detail description.....",
+        placeholder: "Escrever descrição detalhada.....",
           tabsize: 2,
           height: 150
       });

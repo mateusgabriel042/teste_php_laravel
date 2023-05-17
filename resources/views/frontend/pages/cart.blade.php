@@ -1,5 +1,5 @@
 @extends('frontend.layouts.master')
-@section('title','Cart Page')
+@section('title','Página do carrinho')
 @section('main-content')
 	<!-- Breadcrumbs -->
 	<div class="breadcrumbs">
@@ -8,8 +8,8 @@
 				<div class="col-12">
 					<div class="bread-inner">
 						<ul class="bread-list">
-							<li><a href="{{('home')}}">Home<i class="ti-arrow-right"></i></a></li>
-							<li class="active"><a href="">Cart</a></li>
+						<li><a href="{{route('home')}}">Início<i class="ti-arrow-right"></i></a></li>
+							<li class="active"><a href="">CArrinho</a></li>
 						</ul>
 					</div>
 				</div>
@@ -27,11 +27,11 @@
 					<table class="table shopping-summery">
 						<thead>
 							<tr class="main-hading">
-								<th>PRODUCT</th>
-								<th>NAME</th>
-								<th class="text-center">UNIT PRICE</th>
-								<th class="text-center">QUANTITY</th>
-								<th class="text-center">TOTAL</th>
+								<th>Produtos</th>
+								<th>Nome</th>
+								<th class="text-center">Preço Unitário</th>
+								<th class="text-center">Quantidade</th>
+								<th class="text-center">Total</th>
 								<th class="text-center"><i class="ti-trash remove-icon"></i></th>
 							</tr>
 						</thead>
@@ -79,13 +79,13 @@
 										<td></td>
 										<td></td>
 										<td class="float-right">
-											<button class="btn float-right" type="submit">Update</button>
+											<button class="btn float-right" type="submit">Modificar</button>
 										</td>
 									</track>
 								@else
 										<tr>
 											<td class="text-center">
-												There are no any carts available. <a href="{{route('product-grids')}}" style="color:blue;">Continue shopping</a>
+												Não há carrinhos disponíveis. <a href="{{route('product-grids')}}" style="color:blue;">Continue comprando</a>
 
 											</td>
 										</tr>
@@ -108,14 +108,14 @@
 									<form action="{{route('coupon-store')}}" method="POST">
 											@csrf
 											<input name="code" placeholder="Enter Your Coupon">
-											<button class="btn">Apply</button>
+											<button class="btn">Aplicar</button>
 										</form>
 									</div>
 									{{-- <div class="checkbox">`
 										@php
 											$shipping=DB::table('shippings')->where('status','active')->limit(1)->get();
 										@endphp
-										<label class="checkbox-inline" for="2"><input name="news" id="2" type="checkbox" onchange="showMe('shipping');"> Shipping</label>
+										<label class="checkbox-inline" for="2"><input name="news" id="2" type="checkbox" onchange="showMe('shipping');">Envio</label>
 									</div> --}}
 								</div>
 							</div>
@@ -134,14 +134,14 @@
 											}
 										@endphp
 										@if(session()->has('coupon'))
-											<li class="last" id="order_total_price">You Pay<span>${{number_format($total_amount,2)}}</span></li>
+											<li class="last" id="order_total_price">Você paga<span>${{number_format($total_amount,2)}}</span></li>
 										@else
-											<li class="last" id="order_total_price">You Pay<span>${{number_format($total_amount,2)}}</span></li>
+											<li class="last" id="order_total_price">Você paga<span>${{number_format($total_amount,2)}}</span></li>
 										@endif
 									</ul>
 									<div class="button5">
-										<a href="{{route('checkout')}}" class="btn">Checkout</a>
-										<a href="{{route('product-grids')}}" class="btn">Continue shopping</a>
+										<a href="{{route('checkout')}}" class="btn">Confirmar</a>
+										<a href="{{route('product-grids')}}" class="btn">Continue comprando</a>
 									</div>
 								</div>
 							</div>
@@ -154,7 +154,6 @@
 	</div>
 	<!--/ End Shopping Cart -->
 
-	<!-- Start Shop Services Area  -->
 	<section class="shop-services section">
 		<div class="container">
 			<div class="row">
@@ -162,8 +161,8 @@
 					<!-- Start Single Service -->
 					<div class="single-service">
 						<i class="ti-rocket"></i>
-						<h4>Free shiping</h4>
-						<p>Orders over $100</p>
+						<h4>Envio Grátis</h4>
+						<p>Pedidos acima de $ 100</p>
 					</div>
 					<!-- End Single Service -->
 				</div>
@@ -171,8 +170,8 @@
 					<!-- Start Single Service -->
 					<div class="single-service">
 						<i class="ti-reload"></i>
-						<h4>Free Return</h4>
-						<p>Within 30 days returns</p>
+						<h4>Devolução Gratuita</h4>
+						<p>Dentro de 30 dias devoluções</p>
 					</div>
 					<!-- End Single Service -->
 				</div>
@@ -180,8 +179,8 @@
 					<!-- Start Single Service -->
 					<div class="single-service">
 						<i class="ti-lock"></i>
-						<h4>Sucure Payment</h4>
-						<p>100% secure payment</p>
+						<h4>Pagamento seguro</h4>
+						<p>Pagamento 100% seguro</p>
 					</div>
 					<!-- End Single Service -->
 				</div>
@@ -189,15 +188,15 @@
 					<!-- Start Single Service -->
 					<div class="single-service">
 						<i class="ti-tag"></i>
-						<h4>Best Peice</h4>
-						<p>Guaranteed price</p>
+						<h4>Melhor preço</h4>
+						<p>Preço garantido</p>
 					</div>
 					<!-- End Single Service -->
 				</div>
 			</div>
 		</div>
 	</section>
-	<!-- End Shop Newsletter -->
+	<!-- End Shop Services Area -->
 
 	<!-- Start Shop Newsletter  -->
 	@include('frontend.layouts.newsletter')

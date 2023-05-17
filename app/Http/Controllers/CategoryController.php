@@ -2,12 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\ApiServices\MeliService;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
+    public function getSuggestion(Request $request)
+    {
+        $suggestion = (new MeliService())->getCategoryPredictor($request->name);
+
+        return json_encode($suggestion['data']);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -152,10 +159,11 @@ class CategoryController extends Controller
 
     public function getChildByParent(Request $request){
         // return $request->all();
-        $category=Category::findOrFail($request->id);
-        $child_cat=Category::getChildByParentID($request->id);
+        // $category = Category::findOrFail($request->id);
+
+        $child_cat = Category::getChildByParentID($request->id);
         // return $child_cat;
-        if(count($child_cat)<=0){
+        if(count($child_cat )<=0 ){
             return response()->json(['status'=>false,'msg'=>'','data'=>null]);
         }
         else{

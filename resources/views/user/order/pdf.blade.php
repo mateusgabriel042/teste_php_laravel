@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Order @if($order)- {{$order->cart_id}} @endif</title>
+  <title>Pedido @if($order)- {{$order->cart_id}} @endif</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
@@ -76,22 +76,22 @@
     <div class="float-right site-address">
       <h4>{{env('APP_NAME')}}</h4>
       <p>{{env('APP_ADDRESS')}}</p>
-      <p>Phone: <a href="tel:{{env('APP_PHONE')}}">{{env('APP_PHONE')}}</a></p>
+      <p>Telefone: <a href="tel:{{env('APP_PHONE')}}">{{env('APP_PHONE')}}</a></p>
       <p>Email: <a href="mailto:{{env('APP_EMAIL')}}">{{env('APP_EMAIL')}}</a></p>
     </div>
     <div class="clearfix"></div>
   </div>
   <div class="invoice-description">
     <div class="invoice-left-top float-left">
-      <h6>Invoice to</h6>
+      <h6>Fatura para</h6>
        <h3>{{$order->first_name}} {{$order->last_name}}</h3>
        <div class="address">
         <p>
-          <strong>Country: </strong>
+          <strong>País: </strong>
           {{$order->country}}
         </p>
         <p>
-          <strong>Address: </strong>
+          <strong>Endereço: </strong>
           {{ $order->address1 }} OR {{ $order->address2}}
         </p>
          <p><strong>Phone:</strong> {{ $order->phone }}</p>
@@ -107,13 +107,13 @@
   </div>
   <section class="order_details pt-3">
     <div class="table-header">
-      <h5>Order Details</h5>
+      <h5>Detalhes do pedido</h5>
     </div>
     <table class="table table-bordered table-stripe">
       <thead>
         <tr>
-          <th scope="col" class="col-6">Product</th>
-          <th scope="col" class="col-3">Quantity</th>
+          <th scope="col" class="col-6">Produto</th>
+          <th scope="col" class="col-3">Quantidade</th>
           <th scope="col" class="col-3">Total</th>
         </tr>
       </thead>
@@ -142,13 +142,13 @@
       {{-- @if(!empty($order->coupon))
         <tr>
           <th scope="col" class="empty"></th>
-          <th scope="col" class="text-right">Discount:</th>
+          <th scope="col" class="text-right">Desconto:</th>
           <th scope="col"><span>-{{$order->coupon->discount(Helper::orderPrice($order->id, $order->user->id))}}{{Helper::base_currency()}}</span></th>
         </tr>
       @endif --}}
         <tr>
           <th scope="col" class="empty"></th>
-          <th scope="col" class="text-right ">Shipping:</th>
+          <th scope="col" class="text-right ">Envio:</th>
           <th><span>${{number_format($order->delivery_charge,2)}}</span></th>
         </tr>
         <tr>
@@ -164,11 +164,11 @@
     </table>
   </section>
   <div class="thanks mt-3">
-    <h4>Thank you for your business !!</h4>
+    <h4>Agradeço pelos seus serviços !!</h4>
   </div>
   <div class="authority float-right mt-5">
     <p>-----------------------------------</p>
-    <h5>Authority Signature:</h5>
+    <h5>Assinatura da Autoridade:</h5>
   </div>
   <div class="clearfix"></div>
 @else

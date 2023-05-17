@@ -8,8 +8,8 @@
 				<div class="col-12">
 					<div class="bread-inner">
 						<ul class="bread-list">
-							<li><a href="{{route('home')}}">Home<i class="ti-arrow-right"></i></a></li>
-							<li class="active"><a href="javascript:void(0);">Contact</a></li>
+							<li><a href="{{route('home')}}">Início<i class="ti-arrow-right"></i></a></li>
+							<li class="active"><a href="javascript:void(0);">Contato</a></li>
 						</ul>
 					</div>
 				</div>
@@ -29,45 +29,45 @@
 									@php
 										$settings=DB::table('settings')->get();
 									@endphp
-									<h4>Get in touch</h4>
-									<h3>Write us a message @auth @else<span style="font-size:12px;" class="text-danger">[You need to login first]</span>@endauth</h3>
+									<h4>Entrar em contato</h4>
+									<h3>Escreva-nos uma mensagem @auth @else<span style="font-size:12px;" class="text-danger">[Você precisa fazer o login primeiro]</span>@endauth</h3>
 								</div>
 								<form class="form-contact form contact_form" method="post" action="{{route('contact.store')}}" id="contactForm" novalidate="novalidate">
 									@csrf
 									<div class="row">
 										<div class="col-lg-6 col-12">
 											<div class="form-group">
-												<label>Your Name<span>*</span></label>
-												<input name="name" id="name" type="text" placeholder="Enter your name">
+												<label>Nome<span>*</span></label>
+												<input name="name" id="name" type="text" placeholder="Digite seu Nome">
 											</div>
 										</div>
 										<div class="col-lg-6 col-12">
 											<div class="form-group">
-												<label>Your Subjects<span>*</span></label>
-												<input name="subject" type="text" id="subject" placeholder="Enter Subject">
+												<label>Seu assunto<span>*</span></label>
+												<input name="subject" type="text" id="subject" placeholder="Digite seu Seu">
 											</div>
 										</div>
 										<div class="col-lg-6 col-12">
 											<div class="form-group">
-												<label>Your Email<span>*</span></label>
-												<input name="email" type="email" id="email" placeholder="Enter email address">
+												<label>Email<span>*</span></label>
+												<input name="email" type="email" id="email" placeholder="Digite seu Email">
 											</div>	
 										</div>
 										<div class="col-lg-6 col-12">
 											<div class="form-group">
-												<label>Your Phone<span>*</span></label>
-												<input id="phone" name="phone" type="number" placeholder="Enter your phone">
+												<label>Telefone<span>*</span></label>
+												<input id="phone" name="phone" type="number" placeholder="Digite seu Telefone">
 											</div>	
 										</div>
 										<div class="col-12">
 											<div class="form-group message">
-												<label>your message<span>*</span></label>
-												<textarea name="message" id="message" cols="30" rows="9" placeholder="Enter Message"></textarea>
+												<label>Mensagem<span>*</span></label>
+												<textarea name="message" id="message" cols="30" rows="9" placeholder="Digite sua Mensagema"></textarea>
 											</div>
 										</div>
 										<div class="col-12">
 											<div class="form-group button">
-												<button type="submit" class="btn ">Send Message</button>
+												<button type="submit" class="btn ">Enviar Mensagem</button>
 											</div>
 										</div>
 									</div>
@@ -78,7 +78,7 @@
 							<div class="single-head">
 								<div class="single-info">
 									<i class="fa fa-phone"></i>
-									<h4 class="title">Call us Now:</h4>
+									<h4 class="title">Ligue-nos agora:</h4>
 									<ul>
 										<li>@foreach($settings as $data) {{$data->phone}} @endforeach</li>
 									</ul>
@@ -92,7 +92,7 @@
 								</div>
 								<div class="single-info">
 									<i class="fa fa-location-arrow"></i>
-									<h4 class="title">Our Address:</h4>
+									<h4 class="title">Nosso endereço:</h4>
 									<ul>
 										<li>@foreach($settings as $data) {{$data->address}} @endforeach</li>
 									</ul>
@@ -121,13 +121,13 @@
 		<div class="modal-dialog" role="document">
 		  <div class="modal-content">
 			<div class="modal-header">
-				<h2 class="text-success">Thank you!</h2>
+				<h2 class="text-success">Obrigada!</h2>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
 			<div class="modal-body">
-				<p class="text-success">Your message is successfully sent...</p>
+				<p class="text-success">Sua mensagem foi enviada com sucesso...</p>
 			</div>
 		  </div>
 		</div>
@@ -138,13 +138,13 @@
 		<div class="modal-dialog" role="document">
 		  <div class="modal-content">
 			<div class="modal-header">
-				<h2 class="text-warning">Sorry!</h2>
+				<h2 class="text-warning">Desculpe!</h2>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
 			<div class="modal-body">
-				<p class="text-warning">Something went wrong.</p>
+				<p class="text-warning">Algo deu errado.</p>
 			</div>
 		  </div>
 		</div>

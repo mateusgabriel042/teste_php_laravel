@@ -9,8 +9,8 @@
          </div>
      </div>
     <div class="card-header py-3">
-      <h6 class="m-0 font-weight-bold text-primary float-left">Category Lists</h6>
-      <a href="{{route('category.create')}}" class="btn btn-primary btn-sm float-right" data-toggle="tooltip" data-placement="bottom" title="Add User"><i class="fas fa-plus"></i> Add Category</a>
+      <h6 class="m-0 font-weight-bold text-primary float-left">Lista de Categorias</h6>
+      <a href="{{route('category.create')}}" class="btn btn-primary btn-sm float-right" data-toggle="tooltip" data-placement="bottom" title="Add User"><i class="fas fa-plus"></i> Adicionar Categoria</a>
     </div>
     <div class="card-body">
       <div class="table-responsive">
@@ -19,25 +19,25 @@
           <thead>
             <tr>
               <th>S.N.</th>
-              <th>Title</th>
+              <th>Titulo</th>
               <th>Slug</th>
-              <th>Is Parent</th>
-              <th>Parent Category</th>
-              <th>Photo</th>
+              <th>É Parente</th>
+              <th>Parente da Categoria</th>
+              <th>Foto</th>
               <th>Status</th>
-              <th>Action</th>
+              <th>Ações</th>
             </tr>
           </thead>
           <tfoot>
             <tr>
               <th>S.N.</th>
-              <th>Title</th>
+              <th>Titulo</th>
               <th>Slug</th>
-              <th>Is Parent</th>
-              <th>Parent Category</th>
-              <th>Photo</th>
+              <th>É Parente</th>
+              <th>Parente da Categoria</th>
+              <th>Foto</th>
               <th>Status</th>
-              <th>Action</th>
+              <th>Ações</th>
             </tr>
           </tfoot>
           <tbody>
@@ -49,7 +49,7 @@
                     <td>{{$category->id}}</td>
                     <td>{{$category->title}}</td>
                     <td>{{$category->slug}}</td>
-                    <td>{{(($category->is_parent==1)? 'Yes': 'No')}}</td>
+                    <td>{{(($category->is_parent==1)? 'Sim': 'Não')}}</td>
                     <td>
                         {{$category->parent_info->title ?? ''}}
                     </td>
@@ -72,7 +72,7 @@
                     <form method="POST" action="{{route('category.destroy',[$category->id])}}">
                       @csrf
                       @method('delete')
-                          <button class="btn btn-danger btn-sm dltBtn" data-id={{$category->id}} style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class="fas fa-trash-alt"></i></button>
+                          <button class="btn btn-danger btn-sm dltBtn" data-id={{$category->id}} style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" data-placement="bottom" title="Deletar"><i class="fas fa-trash-alt"></i></button>
                         </form>
                     </td>
                 </tr>
@@ -81,7 +81,7 @@
         </table>
         <span style="float:right">{{$categories->links()}}</span>
         @else
-          <h6 class="text-center">No Categories found!!! Please create Category</h6>
+          <h6 class="text-center">Nenhuma categoria encontrada!!! Por favor, crie uma categoria</h6>
         @endif
       </div>
     </div>
@@ -137,8 +137,8 @@
               // alert(dataID);
               e.preventDefault();
               swal({
-                    title: "Are you sure?",
-                    text: "Once deleted, you will not be able to recover this data!",
+                    title: "Tem certeza?",
+                    text: "Uma vez excluído, você não poderá recuperar esses dados!",
                     icon: "warning",
                     buttons: true,
                     dangerMode: true,
@@ -147,7 +147,7 @@
                     if (willDelete) {
                        form.submit();
                     } else {
-                        swal("Your data is safe!");
+                        swal("Seus dados estão seguros!");
                     }
                 });
           })

@@ -1,25 +1,25 @@
 @extends('user.layouts.master')
 
-@section('title','Order Detail')
+@section('title','Detalhe do pedido')
 
 @section('main-content')
 <div class="card">
-<h5 class="card-header">Order       <a href="{{route('order.pdf',$order->id)}}" class=" btn btn-sm btn-primary shadow-sm float-right"><i class="fas fa-download fa-sm text-white-50"></i> Generate PDF</a>
+<h5 class="card-header">Pedido       <a href="{{route('order.pdf',$order->id)}}" class=" btn btn-sm btn-primary shadow-sm float-right"><i class="fas fa-download fa-sm text-white-50"></i> Generate PDF</a>
   </h5>
   <div class="card-body">
     @if($order)
     <table class="table table-striped table-hover">
       <thead>
         <tr>
-            <th>S.N.</th>
-            <th>Order No.</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Quantity</th>
-            <th>Charge</th>
-            <th>Total Amount</th>
-            <th>Status</th>
-            <th>Action</th>
+          <th>S.N.</th>
+          <th>Ordem</th>
+          <th>Nome</th>
+          <th>Email</th>
+          <th>Quantidade</th>
+          <th>Carregar</th>
+          <th>Valor total</th>
+          <th>Status</th>
+          <th>Ações</th>
         </tr>
       </thead>
       <tbody>
@@ -59,22 +59,22 @@
         <div class="row">
           <div class="col-lg-6 col-lx-4">
             <div class="order-info">
-              <h4 class="text-center pb-4">ORDER INFORMATION</h4>
+              <h4 class="text-center pb-4">INFORMAÇÕES DO PEDIDO</h4>
               <table class="table">
                     <tr class="">
-                        <td>Order Number</td>
+                        <td>Pedido número</td>
                         <td> : {{$order->order_number}}</td>
                     </tr>
                     <tr>
-                        <td>Order Date</td>
+                        <td>Pedido data</td>
                         <td> : {{$order->created_at->format('D d M, Y')}} at {{$order->created_at->format('g : i a')}} </td>
                     </tr>
                     <tr>
-                        <td>Quantity</td>
+                        <td>Quantidade</td>
                         <td> : {{$order->quantity}}</td>
                     </tr>
                     <tr>
-                        <td>Order Status</td>
+                        <td>Pedido Status</td>
                         <td> : {{$order->status}}</td>
                     </tr>
                     <tr>
@@ -85,15 +85,15 @@
                         <td> :${{$order->shipping->price}}</td>
                     </tr>
                     <tr>
-                        <td>Total Amount</td>
+                        <td>Valor total</td>
                         <td> : $ {{number_format($order->total_amount,2)}}</td>
                     </tr>
                     <tr>
-                      <td>Payment Method</td>
+                      <td>Metodo de pagamento</td>
                       <td> : @if($order->payment_method=='cod') Cash on Delivery @else Paypal @endif</td>
                     </tr>
                     <tr>
-                        <td>Payment Status</td>
+                        <td>Status de pagamento</td>
                         <td> : {{$order->payment_status}}</td>
                     </tr>
               </table>
@@ -102,10 +102,10 @@
 
           <div class="col-lg-6 col-lx-4">
             <div class="shipping-info">
-              <h4 class="text-center pb-4">SHIPPING INFORMATION</h4>
+              <h4 class="text-center pb-4">INFORMAÇÃO DE ENVIO</h4>
               <table class="table">
                     <tr class="">
-                        <td>Full Name</td>
+                        <td>Nome Completo</td>
                         <td> : {{$order->first_name}} {{$order->last_name}}</td>
                     </tr>
                     <tr>
@@ -113,19 +113,19 @@
                         <td> : {{$order->email}}</td>
                     </tr>
                     <tr>
-                        <td>Phone No.</td>
+                        <td>Telefone.</td>
                         <td> : {{$order->phone}}</td>
                     </tr>
                     <tr>
-                        <td>Address</td>
+                        <td>Endereço</td>
                         <td> : {{$order->address1}}, {{$order->address2}}</td>
                     </tr>
                     <tr>
-                        <td>Country</td>
+                        <td>País</td>
                         <td> : {{$order->country}}</td>
                     </tr>
                     <tr>
-                        <td>Post Code</td>
+                        <td>Código Postal</td>
                         <td> : {{$order->post_code}}</td>
                     </tr>
               </table>

@@ -7,9 +7,17 @@
         "laravel"
     ],
     "license": "MIT",
+    "repositories": [
+        {
+          "type": "vcs",
+          "url": "https://github.com/mercadolibre/php-sdk.git"
+        }
+      ],
     "require": {
         "php": "^7.2.5",
+        "barryvdh/laravel-debugbar": "^3.7",
         "barryvdh/laravel-dompdf": "^0.8.6",
+        "dsc/mercado-livre": "2.*",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^1.0",
         "guzzlehttp/guzzle": "^6.3",
@@ -17,6 +25,8 @@
         "laravel/socialite": "^4.4",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.1",
+        "maatwebsite/excel": "^3.1",
+        "mercadolibre/php-sdk": "*@dev",
         "pusher/pusher-php-server": "^4.1",
         "spatie/laravel-newsletter": "^4.8",
         "srmklive/paypal": "~1.0",
@@ -53,7 +63,7 @@
             "Tests\\": "tests/"
         },
         "files":[
-            "app/Http/Helpers.php"
+            "app/Helper/Helpers.php"
         ]
     },
     "minimum-stability": "dev",

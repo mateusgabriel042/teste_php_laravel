@@ -1,5 +1,5 @@
 @extends('frontend.layouts.master')
-@section('title','Wishlist Page')
+@section('title','Página de lista de desejos
 @section('main-content')
 	<!-- Breadcrumbs -->
 	<div class="breadcrumbs">
@@ -8,8 +8,8 @@
 				<div class="col-12">
 					<div class="bread-inner">
 						<ul class="bread-list">
-							<li><a href="{{('home')}}">Home<i class="ti-arrow-right"></i></a></li>
-							<li class="active"><a href="javascript:void(0);">Wishlist</a></li>
+							<li><a href="{{route('home')}}">Início<i class="ti-arrow-right"></i></a></li>
+							<li class="active"><a href="javascript:void(0);">Lista de Desejos</a></li>
 						</ul>
 					</div>
 				</div>
@@ -27,10 +27,10 @@
 					<table class="table shopping-summery">
 						<thead>
 							<tr class="main-hading">
-								<th>PRODUCT</th>
-								<th>NAME</th>
-								<th class="text-center">TOTAL</th> 
-								<th class="text-center">ADD TO CART</th> 
+								<th>Produto</th>
+								<th>Nome</th>
+								<th class="text-center">Tottal</th> 
+								<th class="text-center">Adicionar ao carrinho</th> 
 								<th class="text-center"><i class="ti-trash remove-icon"></i></th>
 							</tr>
 						</thead>
@@ -47,14 +47,14 @@
 											<p class="product-des">{!!($wishlist['summary']) !!}</p>
 										</td>
 										<td class="total-amount" data-title="Total"><span>${{$wishlist['amount']}}</span></td>
-										<td><a href="{{route('add-to-cart',$wishlist->product['slug'])}}" class='btn text-white'>Add To Cart</a></td>
+										<td><a href="{{route('add-to-cart',$wishlist->product['slug'])}}" class='btn text-white'>Adicionar ao carrinho</a></td>
 										<td class="action" data-title="Remove"><a href="{{route('wishlist-delete',$wishlist->id)}}"><i class="ti-trash remove-icon"></i></a></td>
 									</tr>
 								@endforeach
 							@else 
 								<tr>
 									<td class="text-center">
-										There are no any wishlist available. <a href="{{route('product-grids')}}" style="color:blue;">Continue shopping</a>
+										Não há nenhuma lista de desejos disponível. <a href="{{route('product-grids')}}" style="color:blue;">Continue comprando</a>
 
 									</td>
 								</tr>
@@ -70,7 +70,6 @@
 	</div>
 	<!--/ End Shopping Cart -->
 			
-	<!-- Start Shop Services Area  -->
 	<section class="shop-services section">
 		<div class="container">
 			<div class="row">
@@ -78,8 +77,8 @@
 					<!-- Start Single Service -->
 					<div class="single-service">
 						<i class="ti-rocket"></i>
-						<h4>Free shiping</h4>
-						<p>Orders over $100</p>
+						<h4>Envio Grátis</h4>
+						<p>Pedidos acima de $ 100</p>
 					</div>
 					<!-- End Single Service -->
 				</div>
@@ -87,8 +86,8 @@
 					<!-- Start Single Service -->
 					<div class="single-service">
 						<i class="ti-reload"></i>
-						<h4>Free Return</h4>
-						<p>Within 30 days returns</p>
+						<h4>Devolução Gratuita</h4>
+						<p>Dentro de 30 dias devoluções</p>
 					</div>
 					<!-- End Single Service -->
 				</div>
@@ -96,8 +95,8 @@
 					<!-- Start Single Service -->
 					<div class="single-service">
 						<i class="ti-lock"></i>
-						<h4>Sucure Payment</h4>
-						<p>100% secure payment</p>
+						<h4>Pagamento seguro</h4>
+						<p>Pagamento 100% seguro</p>
 					</div>
 					<!-- End Single Service -->
 				</div>
@@ -105,15 +104,15 @@
 					<!-- Start Single Service -->
 					<div class="single-service">
 						<i class="ti-tag"></i>
-						<h4>Best Peice</h4>
-						<p>Guaranteed price</p>
+						<h4>Melhor preço</h4>
+						<p>Preço garantido</p>
 					</div>
 					<!-- End Single Service -->
 				</div>
 			</div>
 		</div>
 	</section>
-	<!-- End Shop Newsletter -->
+	<!-- End Shop Services Area -->
 	
 	@include('frontend.layouts.newsletter')
 	
@@ -210,12 +209,12 @@
 										<!--/ End Input Order -->
 									</div>
 									<div class="add-to-cart">
-										<a href="#" class="btn">Add to cart</a>
+										<a href="#" class="btn">Adicionar ao carrinho</a>
 										<a href="#" class="btn min"><i class="ti-heart"></i></a>
 										<a href="#" class="btn min"><i class="fa fa-compress"></i></a>
 									</div>
                                     <div class="default-social">
-										<h4 class="share-now">Share:</h4>
+										<h4 class="share-now">Compartilhar:</h4>
                                         <ul>
                                             <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
                                             <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>

