@@ -172,6 +172,8 @@ Route::group(['prefix'=>'/admin','middleware'=>['auth','admin']],function(){
     // Announcement
     Route::get('/announcement/alter','AnnouncementController@alter')->name('announcement.alter');
     Route::get('/announcement/edit/{id}/{id_api}', 'AnnouncementController@edit')->name('announcement.edit2');
+    Route::get('/announcement/edit-multiple/{ids?}/{id_api?}', 'AnnouncementController@editMultiple')->name('announcement.editMultiple');
+    
     Route::resource('/announcement','AnnouncementController');
 });
 

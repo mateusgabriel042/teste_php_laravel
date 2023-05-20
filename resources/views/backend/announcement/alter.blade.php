@@ -46,8 +46,14 @@
           </div>
       </div>
       <div class="card-header py-3">
-          <h6 class="m-0 font-weight-bold text-primary float-left">Product Lists</h6>
-
+        <div class="card-header-actions">
+            <h6 class="m-0 font-weight-bold text-primary float-left">Product Lists</h6>
+            <div>
+                <a href="{{ url('admin/announcement/edit-multiple/') }}" class="btn btn-primary btn-sm float-left mr-1" id="link-edit-multiple">
+                    Alterar selecionados
+                </a>
+            </div>
+        </div>
       </div>
       <div class="card-body">
           <div class="table-responsive">
@@ -55,6 +61,7 @@
                   <table class="table table-bordered" id="product-dataTable" width="100%" cellspacing="0">
                       <thead>
                           <tr>
+                              <th>#</th>
                               <th>S.N.</th>
                               <th>Title</th>
                               <th>Category</th>
@@ -68,6 +75,7 @@
                       </thead>
                       <tfoot>
                           <tr>
+                              <th>#</th>
                               <th>S.N.</th>
                               <th>Titulo</th>
                               <th>Categoria</th>
@@ -83,6 +91,7 @@
 
                           @foreach ($products as $product)
                               <tr>
+                                  <td><input type="checkbox" class="input_select_id" value="{{$product->id}}"></td>
                                   <td>{{ $product->id }}</td>
                                   <td>{{ $product->title ?? __('') }}</td>
                                   <td>{{ $product->cat_info['title'] ?? __('') }}
@@ -126,7 +135,7 @@
                                   <td>
                                       <a href=" {{route('announcement.edit2',['id' => $product->id, 'id_api' => app('request')->input('id_api')])}} "
                                           class="btn btn-primary btn-sm float-left mr-1">
-                                          <i class="fas fa-edit"></i> Alterar Anúncio</a>
+                                      <i class="fas fa-edit"></i> Alterar Anúncio</a>
                                   </td>
                               </tr>
                           @endforeach
@@ -175,6 +184,8 @@
         .zoom:hover {
             transform: scale(5);
         }
+        .card-header-actions {float:left; width:100%; display:flex; align-items:center; align-content: center; justify-content:space-between;}
+        #link-edit-multiple {display:none;}
     </style>
 @endpush
 
@@ -188,7 +199,8 @@
     <script src="{{ asset('backend/js/demo/datatables-demo.js') }}"></script>
     <script>
         $('#product-dataTable').DataTable({
-            "scrollX": false "columnDefs": [{
+            "scrollX": false, 
+            "columnDefs": [{
                 "orderable": false,
                 "targets": [10, 11, 12]
             }]
@@ -231,5 +243,31 @@
                     });
             })
         })
+    </script>
+
+    <script>
+        let checkboxesElements = document.querySelectorAll('.input_select_id');
+        let checkboxesArray = Array.from(checkboxesElements);
+        let elementLinkIdsSelected = document.querySelector('#link-edit-multiple');
+        let elementInputIdApi = document.querySelector('#id_api');
+        
+        const baseLink = elementLinkIdsSelected.href;
+        
+        let idsSelected = [];
+        checkboxesArray.forEach(function(element) {
+            element.addEventListener('change', function() {
+                if (element.checked)
+                    idsSelected.push(element.value)
+                else
+                    idsSelected = idsSelected.filter(id => id != element.value);
+                if(idsSelected.length == 0)
+                    elementLinkIdsSelected.style.display = 'none';
+                else
+                    elementLinkIdsSelected.style.display = 'block';
+
+                elementLinkIdsSelected.href = `${baseLink}/${idsSelected.join(',')}/${elementInputIdApi.value}`;
+            }); 
+        });
+        
     </script>
 @endpush

@@ -99,6 +99,28 @@ class AnnouncementController extends Controller
                                                 ->with('items', $items);
     }
 
+    public function editMultiple($ids, $id_api) {
+        $arrayIds = explode(",", $ids);
+        $brand = Brand::get();
+        $category = ProductCategory::all();
+        $items = Product::whereIn('id', $arrayIds)->get();
+        $products = [];
+        foreach ($arrayIds as $id) {
+            $product = ProductToApi::join("products", "products.id", "product_to_apis.id_products")
+                ->where('products.id', $id)
+                ->where('product_to_apis.id_api', $id_api)
+                ->first();
+            array_push($products, $product);
+        }
+
+        return view('backend.announcement.editMultiple')->with('products', $products)
+                                                ->with('brands', $brand)
+                                                ->with('categories', $category)
+                                                ->with('items', $items);
+        
+           
+    }
+
     public function update(Request $request, $id)
     {
         // Validar os dados do formulário
