@@ -3,154 +3,163 @@
 @section('main-content')
 
 @foreach($products as $keyProduct => $product)
-    <div class="car mb-5d">
+    <div class="card">
         <h5 class="card-header">Editar Anúncio ({{$product->title}})</h5>
         <div class="card-body">
-        <form method="post" action="{{route('announcement.update',$product->id)}}" id="form-product-{{$product->id}}">
-            @csrf
-            @method('PATCH')
-            <input id="company" type="hidden" name="company"   value="{{$product->id_api }}" class="form-control">
-            <div class="form-group">
-            <label for="inputTitle" class="col-form-label">Titulo <span class="text-danger">*</span></label>
-            <input id="inputTitle" type="text" name="title" placeholder="Enter title"  value="{{old("title") ?? $product->title  }}" class="form-control">
-            @error('title')
-            <span class="text-danger">{{$message}}</span>
-            @enderror
-            </div>
+            <form method="post" action="{{route('announcement.update',$product->id)}}" id="form-product-{{$product->id}}" class="form-edit">
+                @csrf
+                @method('PATCH')
+                <input id="company" type="hidden" name="company"   value="{{$product->id_api }}" class="form-control">
+                <div class="form-group">
+                    <label for="inputTitle" class="col-form-label">Titulo <span class="text-danger">*</span></label>
+                    <input id="inputTitle" type="text" name="title" placeholder="Enter title"  value="{{old("title") ?? $product->title  }}" class="form-control">
+                    @error('title')
+                    <span class="text-danger">{{$message}}</span>
+                    @enderror
+                </div>
 
-            <div class="form-group">
-            <label for="summary" class="col-form-label">Resumo <span class="text-danger">*</span></label>
-            <te.tarea class="form-control summary" id="summary" name="summary">{{old("summary") ?? $product->summary}}</te.tarea>
-            @error('summary')
-            <span class="text-danger">{{$message}}</span>
-            @enderror
-            </div>
+                <div class="form-group">
+                    <label for="summary" class="col-form-label">Resumo <span class="text-danger">*</span></label>
+                    <textarea class="form-control summary" id="summary" name="summary">{{old("summary") ?? $product->summary}}</textarea>
+                    @error('summary')
+                        <span class="text-danger">{{$message}}</span>
+                    @enderror
+                </div>
 
-            <div class="form-group">
-            <label for="description" class="col-form-label">Descrição</label>
-            <textarea class="form-control description" id="description" name="description">{{old("description") ?? $product->description}}</textarea>
-            @error('description')
-            <span class="text-danger">{{$message}}</span>
-            @enderror
-            </div>
+                <div class="form-group">
+                    <label for="description" class="col-form-label">Descrição</label>
+                    <textarea class="form-control description" id="description" name="description">{{old("description") ?? $product->description}}</textarea>
+                    @error('description')
+                        <span class="text-danger">{{$message}}</span>
+                    @enderror
+                </div>
 
 
-            <div class="form-group">
-            <label for="is_featured">Está em destaque</label><br>
-            <input type="checkbox" name='is_featured' id='is_featured' value='{{$product->is_featured}}' {{(($product->is_featured) ? 'checked' : '')}}> Yes
-            </div>
+                <div class="form-group">
+                    <label for="is_featured">Está em destaque</label><br>
+                    <input type="checkbox" name='is_featured' id='is_featured' value='{{$product->is_featured}}' {{(($product->is_featured) ? 'checked' : '')}}> Yes
+                </div>
+
                 {{-- {{$categories}} --}}
 
-            <div class="form-group">
-            <label for="cat_id">Categoia <span class="text-danger">*</span></label>
-            <select name="cat_id" id="cat_id" class="form-control">
-                <option value="">--Selecione qualquer categoria--</option>
-                @foreach($categories as $key=>$cat_data)
-                    <option value='{{$cat_data->id}}' {{(($product->cat_id==$cat_data->id)? 'selected' : '')}}>{{$cat_data->name}}</option>
-                @endforeach
-            </select>
-            </div>
-            @php
-            $sub_cat_info=DB::table('categories')->select('title')->where('id',$product->child_cat_id)->get();
-            // dd($sub_cat_info);
-
-            @endphp
-            {{-- {{$product->child_cat_id}} --}}
-            <div class="form-group {{(($product->child_cat_id)? '' : 'd-none')}}" id="child_cat_div">
-            <label for="child_cat_id">Sub Category</label>
-            <select name="child_cat_id" id="child_cat_id" class="form-control">
-                <option value="">--Selecione qualquer subcatgoria--</option>
-
-            </select>
-            </div>
-
-            <div class="form-group">
-            <label for="price_cost" class="col-form-label">Preço(NRS) <span class="text-danger">*</span></label>
-            <input id="price_cost" type="number" name="price_cost" placeholder="Enter price"  value="{{old("price_cost") ?? $product->price_cost}}" class="form-control">
-            @error('price_cost')
-            <span class="text-danger">{{$message}}</span>
-            @enderror
-            </div>
-
-            <div class="form-group">
-            <label for="discount" class="col-form-label">Desconto(%)</label>
-            <input id="discount" type="number" name="discount" min="0" max="100" placeholder="Enter discount"  value="{{old("discount") ?? $product->discount}}" class="form-control">
-            @error('discount')
-            <span class="text-danger">{{$message}}</span>
-            @enderror
-            </div>
-            <div class="form-group">
-            <label for="size">Size</label>
-            <select name="size[]" class="form-control selectpicker"  multiple data-live-search="true">
-                <option value="">--Selecione qualquer tamanho--</option>
-                    
+                <div class="form-group">
+                    <label for="cat_id_{{$keyProduct}}">Categoria <span class="text-danger">*</span></label>
+                    <select name="cat_id" id="cat_id_{{$keyProduct}}" class="form-control cat_id" defaultValue="{{$product->child_cat_id}}">
+                        <option value="">--Selecione qualquer categoria--</option>
+                        @foreach($categories as $key=>$cat_data)
+                            <option value='{{$cat_data->id}}' {{(($product->cat_id==$cat_data->id)? 'selected' : '')}}>{{$cat_data->name}}</option>
+                        @endforeach
+                    </select>
+                </div>
+                
                 @php
-                    $data=explode(',',$items[$keyProduct]->size);
+                    $sub_cat_info=DB::table('categories')->select('title')->where('id',$product->child_cat_id)->get();
+                    // dd($sub_cat_info);
                 @endphp
-                <option value="S"  @if( in_array( "S",$data ) ) selected @endif>Small</option>
-                <option value="M"  @if( in_array( "M",$data ) ) selected @endif>Medium</option>
-                <option value="L"  @if( in_array( "L",$data ) ) selected @endif>Large</option>
-                <option value="XL"  @if( in_array( "XL",$data ) ) selected @endif>Extra Large</option>
-            </select>
-            </div>
-            <div class="form-group">
-            <label for="brand_id">Marca</label>
-            <select name="brand_id" class="form-control">
-                <option value="">--Selecione a Marca--</option>
-                @foreach($brands as $brand)
-                <option value="{{$brand->id}}" {{(($product->brand_id==$brand->id)? 'selected':'')}}>{{$brand->title}}</option>
-                @endforeach
-            </select>
-            </div>
 
-            <div class="form-group">
-            <label for="condition">Condição</label>
-            <select name="condition" class="form-control">
-                <option value="">--Selecione qualquer condição--</option>
-                <option value="default" {{(($product->condition=='default')? 'selected':'')}}>Em Falta</option>
-                <option value="new" {{(($product->condition=='new')? 'selected':'')}}>Novo</option>
-                <option value="hot" {{(($product->condition=='hot')? 'selected':'')}}>Quente</option>
-            </select>
-            </div>
+                {{-- {{$product->child_cat_id}} --}}
+                <div class="form-group {{(($product->child_cat_id)? '' : 'd-none')}}" id="child_cat_div_{{$keyProduct}}">
+                    <label for="child_cat_id_{{$keyProduct}}">Sub Category</label>
+                    <select name="child_cat_id" id="child_cat_id_{{$keyProduct}}" class="form-control">
+                        <option value="">--Selecione qualquer subcatgoria--</option>
+                    </select>
+                </div>
 
-            <div class="form-group">
-            <label for="stock">Quantidade <span class="text-danger">*</span></label>
-            <input id="quantity" type="number" name="stock" min="0" placeholder="Digite a quantidade"  value="{{old("stock") ?? $product->stock}}" class="form-control">
-            @error('stock')
-            <span class="text-danger">{{$message}}</span>
-            @enderror
-            </div>
-            <div class="form-group">
-            <label for="inputPhoto" class="col-form-label">Foto <span class="text-danger">*</span></label>
-            <div class="input-group">
-                <span class="input-group-btn">
-                    <a id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-primary text-white">
-                    <i class="fas fa-image"></i> Escolher
-                    </a>
-                </span>
-            <input id="thumbnail" class="form-control" type="text" name="photo" value="{{old("photo") ?? $product->photo}}">
-            </div>
-            <div id="holder" style="margin-top:15px;max-height:100px;"></div>
-            @error('photo')
-            <span class="text-danger">{{$message}}</span>
-            @enderror
-            </div>
+                <div class="form-group">
+                    <label for="price_cost" class="col-form-label">Preço(NRS) <span class="text-danger">*</span></label>
+                    <input id="price_cost" type="number" name="price_cost" placeholder="Enter price"  value="{{old("price_cost") ?? $product->price_cost}}" class="form-control">
+                    @error('price_cost')
+                        <span class="text-danger">{{$message}}</span>
+                    @enderror
+                </div>
 
-            <div class="form-group">
-            <label for="status" class="col-form-label">Status <span class="text-danger">*</span></label>
-            <select name="status" class="form-control">
-                <option value="active" {{(($product->status=='active')? 'selected' : '')}}>Ativo</option>
-                <option value="inactive" {{(($product->status=='inactive')? 'selected' : '')}}>Inativo</option>
-            </select>
-            @error('status')
-            <span class="text-danger">{{$message}}</span>
-            @enderror
+                <div class="form-group">
+                    <label for="discount" class="col-form-label">Desconto(%)</label>
+                    <input id="discount" type="number" name="discount" min="0" max="100" placeholder="Enter discount"  value="{{old("discount") ?? $product->discount}}" class="form-control">
+                    @error('discount')
+                        <span class="text-danger">{{$message}}</span>
+                    @enderror
+                </div>
+                
+                <div class="form-group">
+                    <label for="size">Size</label>
+                    <select name="size[]" class="form-control selectpicker"  multiple data-live-search="true">
+                        <option value="">--Selecione qualquer tamanho--</option>
+                        @php
+                            $data=explode(',',$items[$keyProduct]->size);
+                        @endphp
+                        <option value="S"  @if( in_array( "S",$data ) ) selected @endif>Small</option>
+                        <option value="M"  @if( in_array( "M",$data ) ) selected @endif>Medium</option>
+                        <option value="L"  @if( in_array( "L",$data ) ) selected @endif>Large</option>
+                        <option value="XL"  @if( in_array( "XL",$data ) ) selected @endif>Extra Large</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="brand_id">Marca</label>
+                    <select name="brand_id" class="form-control">
+                        <option value="">--Selecione a Marca--</option>
+                        @foreach($brands as $brand)
+                            <option value="{{$brand->id}}" {{(($product->brand_id==$brand->id)? 'selected':'')}}>{{$brand->title}}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="condition">Condição</label>
+                    <select name="condition" class="form-control">
+                        <option value="">--Selecione qualquer condição--</option>
+                        <option value="default" {{(($product->condition=='default')? 'selected':'')}}>Em Falta</option>
+                        <option value="new" {{(($product->condition=='new')? 'selected':'')}}>Novo</option>
+                        <option value="hot" {{(($product->condition=='hot')? 'selected':'')}}>Quente</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="stock">Quantidade <span class="text-danger">*</span></label>
+                    <input id="quantity" type="number" name="stock" class="form-control" min="0" placeholder="Digite a quantidade" value="{{old("stock") ?? $product->stock}}">
+                    @error('stock')
+                        <span class="text-danger">{{$message}}</span>
+                    @enderror
+                </div>
+
+                <div class="form-group">
+                    <label for="inputPhoto" class="col-form-label">Foto <span class="text-danger">*</span></label>
+                    <div class="input-group">
+                        <span class="input-group-btn">
+                            <a id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-primary text-white lfm">
+                                <i class="fas fa-image"></i> Escolher
+                            </a>
+                        </span>
+                        <input id="thumbnail" class="form-control" type="text" name="photo" value="{{old("photo") ?? $product->photo}}">
+                    </div>
+                    <div id="holder" style="margin-top:15px;max-height:100px;"></div>
+                    @error('photo')
+                        <span class="text-danger">{{$message}}</span>
+                    @enderror
+                </div>
+                
+                <div class="form-group">
+                    <label for="status" class="col-form-label">Status <span class="text-danger">*</span></label>
+                    <select name="status" class="form-control">
+                        <option value="active" {{(($product->status=='active')? 'selected' : '')}}>Ativo</option>
+                        <option value="inactive" {{(($product->status=='inactive')? 'selected' : '')}}>Inativo</option>
+                    </select>
+                    @error('status')
+                        <span class="text-danger">{{$message}}</span>
+                    @enderror
+                </div>
+
+                <div class="form-group mb-3">
+                    <a href="{{route('announcement.alter', ['id_api' => $product->id_api])}}" class="btn btn-primary">Voltar</a>
+                    <button class="btn btn-success altBtn" type="submit">Modificar</button>
+                </div>
+            </form>
+
+            <div id="alert-product-updated-{{$keyProduct}}" class="alert-product-updated">
+                <label>Produto editado com sucesso!</label>
+                <button type="button" class="btn btn-primary btn-open-form-edit" onclick="openForm(event)">Editar novamente</button>
             </div>
-            <div class="form-group mb-3">
-            <a href="{{route('announcement.alter', ['id_api' => $product->id_api])}}" class="btn btn-primary">Voltar</a>
-            <button class="btn btn-success altBtn" type="submit">Modificar</button>
-            </div>
-        </form>
         </div>
     </div>
 @endforeach
@@ -161,6 +170,12 @@
 <link rel="stylesheet" href="{{asset('backend/summernote/summernote.min.css')}}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+<style>
+    .card {float:left; width:90%; margin-left:5%; margin-bottom:80px;}
+    .alert-product-updated {display:none; width:100%;}
+    .alert-product-updated label {color:#15a133; font-style: italic; font-weight:bold;}
+    .alert-product-updated button {float:right;}
+</style>
 @endpush
 @push('scripts')
 <script src="/vendor/laravel-filemanager/js/stand-alone-button.js"></script>
@@ -168,7 +183,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
 
 <script>
-    $('#lfm').filemanager('image');
+    $('.lfm').filemanager('image');
 
     $(document).ready(function() {
       $('.summary').summernote({
@@ -188,57 +203,76 @@
 </script>
 
 <script>
-    let child_cat_id='{{$product->child_cat_id}}';
-    // alert(child_cat_id);
-    $('#cat_id').change(function(){
-        let cat_id=$(this).val();
 
-        if(cat_id !=null){
-            // ajax call
-            $.ajax({
-                url:"/admin/category/"+cat_id+"/child",
-                type:"POST",
-                data:{
-                    _token:"{{csrf_token()}}"
-                },
-                success:function(response){
-                    if(typeof(response)!='object'){
-                        response=$.parseJSON(response);
-                    }
-                    var html_option="<option value=''>--Select any one--</option>";
-                    if(response.status){
-                        var data=response.data;
-                        if(response.data){
-                            $('#child_cat_div').removeClass('d-none');
-                            $.each(data,function(id,title){
-                                html_option += "<option value='"+id+"' "+(child_cat_id==id ? 'selected ' : '')+">"+title+"</option>";
-                            });
+    let child_cat_ids = [];
+    
+    let categoriesSelectsElements = document.querySelectorAll('.cat_id');
+    categoriesSelectsElements.forEach(function(item){
+        child_cat_ids.push($(item).attr('defaultValue'));
+    });
+    
+
+    $.each(categoriesSelectsElements, function(index, item) {
+        $(item).change(function(){
+            let cat_id=$(this).val();
+
+            if(cat_id != null){
+                $.ajax({
+                    url:"/admin/category/"+cat_id+"/child",
+                    type:"POST",
+                    data:{
+                        _token:"{{csrf_token()}}"
+                    },
+                    success:function(response){
+                        if(typeof(response)!='object'){
+                            response=$.parseJSON(response);
+                        }
+                        let html_option="<option value=''>--Select any one--</option>";
+                        if(response.status){
+                            let data=response.data;
+                            if(response.data){
+                                
+                                $('#child_cat_div_'+index).removeClass('d-none');
+                                $.each(data,function(id,title){
+                                    html_option += "<option value='"+id+"' "+(child_cat_ids[index]==id ? 'selected ' : '')+">"+title+"</option>";
+                                });
+                            }
+                            else{
+                                console.log('no response data');
+                            }
                         }
                         else{
-                            console.log('no response data');
+                            $('#child_cat_div_'+index).addClass('d-none');
                         }
-                    }
-                    else{
-                        $('#child_cat_div').addClass('d-none');
-                    }
-                    $('#child_cat_id').html(html_option);
+                        $('#child_cat_id_'+index).html(html_option);
 
-                }
-            });
+                    }
+                });
+            }
+        });
+    });
+    
+    
+    child_cat_ids.forEach(function(item, index){
+        if(item!=null && item != ''){
+            $(categoriesSelectsElements[index]).change();
         }
     });
-    if(child_cat_id!=null){
-        $('#cat_id').change();
+
+    function openForm(e) {
+        let buttons = document.querySelectorAll('.btn-open-form-edit');
+        let buttonIndex = Array.from(buttons).indexOf(event.target);
+        let forms = document.querySelectorAll('.form-edit');
+        $(forms[buttonIndex]).toggle(2000);
+        $('#alert-product-updated-'+buttonIndex).toggle(50);
     }
-
-
+    
     $(document).ready(function() {
         let elementsBtnsSubmitForm = document.querySelectorAll('.altBtn');
 
         elementsBtnsSubmitForm.forEach(function(item, index){
             $(item).click(function(e) {
                 let form = $(this).closest('form');
-                
                 e.preventDefault();
 
                 console.log(form.attr('action'));
@@ -257,7 +291,8 @@
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                         },
                         success: function(response) {
-                            alert('o dado foi salvo!');
+                            $(form).toggle(2000);
+                            $('#alert-product-updated-'+index).toggle(50);
                         },
                         error: function(xhr, status, error) {
                             console.log('Erro na requisição');
@@ -266,21 +301,6 @@
                     });
                 });
 
-                /*swal({
-                    title: "Tem certeza que Deseja Alterar o Anúncio?",
-                    text: "Uma vez alterado, você não poderá recuperar esses dados!",
-                    icon: "warning",
-                    buttons: true,
-                    dangerMode: true,
-                })
-                .then((willDelete) => {
-                    if (willDelete) {
-                        alert(index);
-                        //form.submit();
-                    } else {
-                        swal("Seus dados estão seguros!");
-                    }
-                });*/
             })
         });  
     })
