@@ -124,6 +124,20 @@
         </div>
     </li>
 
+    {{-- Financial --}}
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#financialCollapse" aria-expanded="true" aria-controls="financialCollapse">
+        <i class="fas fa-money-bill"></i>
+        <span>Financeiro</span>
+      </a>
+      <div id="financialCollapse" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+          <h6 class="collapse-header">Financeiro:</h6>
+          <a class="collapse-item" href="{{route('financial.index')}}">Relatório</a>
+        </div>
+      </div>
+  </li>
+
     <!--Orders -->
     <li class="nav-item">
         <a class="nav-link" href="{{route('order.index')}}">

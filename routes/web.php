@@ -175,6 +175,10 @@ Route::group(['prefix'=>'/admin','middleware'=>['auth','admin']],function(){
     Route::get('/announcement/edit-multiple/{ids?}/{id_api?}', 'AnnouncementController@editMultiple')->name('announcement.editMultiple');
     
     Route::resource('/announcement','AnnouncementController');
+
+    // Financial
+    Route::get('/financial','FinancialController@index')->name('financial.index');
+    Route::get('/financial/report','FinancialController@report')->name('financial.report');
 });
 
 
