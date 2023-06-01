@@ -25,7 +25,7 @@
     <!--  -->
     <!--  -->
 
-    <!-- Heading -->
+    <!-- Heading 
     <div class="sidebar-heading">
         Marker
     </div>
@@ -47,22 +47,24 @@
         </div>
       </div>
     </li>
+    -->
     <!-- Divider -->
     <hr class="sidebar-divider">
         <!-- Heading -->
         <div class="sidebar-heading">
-          Compras
+          Vendas
         </div>
 
         <!-- Nav Item - Pages Collapse Menu -->
-    <!-- Nav Item - Charts -->
+    <!-- Nav Item - Charts 
     <li class="nav-item">
         <a class="nav-link" href="{{route('file-manager')}}">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Gerencia mídia</span></a>
     </li>
+    -->
 
-    <!-- Categories -->
+    <!-- Categories 
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#categoryCollapse" aria-expanded="true" aria-controls="categoryCollapse">
           <i class="fas fa-sitemap"></i>
@@ -76,7 +78,8 @@
           </div>
         </div>
     </li>
-    {{-- Products --}}
+    -->
+    {{-- Products 
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#productCollapse" aria-expanded="true" aria-controls="productCollapse">
           <i class="fas fa-cubes"></i>
@@ -93,8 +96,8 @@
           </div>
         </div>
     </li>
-
-    {{-- Brands --}}
+    --}}
+    {{-- Brands 
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#brandCollapse" aria-expanded="true" aria-controls="brandCollapse">
           <i class="fas fa-table"></i>
@@ -108,8 +111,8 @@
           </div>
         </div>
     </li>
-
-    {{-- Shipping --}}
+    --}}
+    {{-- Shipping 
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#shippingCollapse" aria-expanded="true" aria-controls="shippingCollapse">
           <i class="fas fa-truck"></i>
@@ -123,7 +126,7 @@
           </div>
         </div>
     </li>
-
+    --}}
     {{-- Financial --}}
     <li class="nav-item">
       <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#financialCollapse" aria-expanded="true" aria-controls="financialCollapse">
@@ -133,36 +136,37 @@
       <div id="financialCollapse" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
           <h6 class="collapse-header">Financeiro:</h6>
+          <a class="collapse-item" href="{{route('financial.index')}}">Vendas</a>
           <a class="collapse-item" href="{{route('financial.index')}}">Relatório</a>
         </div>
       </div>
   </li>
 
-    <!--Orders -->
+    <!--Orders 
     <li class="nav-item">
         <a class="nav-link" href="{{route('order.index')}}">
             <i class="fas fa-hammer fa-chart-area"></i>
             <span>Pedidos</span>
         </a>
     </li>
-
-    <!-- Reviews -->
+    -->
+    <!-- Reviews 
     <li class="nav-item">
         <a class="nav-link" href="{{route('review.index')}}">
             <i class="fas fa-comments"></i>
             <span>Avaliações</span></a>
     </li>
-    
+    -->
 
-    <!-- Divider -->
+    <!-- Divider 
     <hr class="sidebar-divider">
-
-    <!-- Heading -->
+      -->
+    <!-- Heading 
     <div class="sidebar-heading">
       Posts
     </div>
-
-    <!-- Posts -->
+    -->
+    <!-- Posts 
     <li class="nav-item">
       <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#postCollapse" aria-expanded="true" aria-controls="postCollapse">
         <i class="fas fa-fw fa-folder"></i>
@@ -176,8 +180,8 @@
         </div>
       </div>
     </li>
-
-     <!-- Category -->
+    -->
+     <!-- Category 
      <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#postCategoryCollapse" aria-expanded="true" aria-controls="postCategoryCollapse">
           <i class="fas fa-sitemap fa-folder"></i>
@@ -191,8 +195,8 @@
           </div>
         </div>
       </li>
-
-      <!-- Tags -->
+      -->
+      <!-- Tags 
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#tagCollapse" aria-expanded="true" aria-controls="tagCollapse">
             <i class="fas fa-tags fa-folder"></i>
@@ -206,15 +210,15 @@
             </div>
         </div>
     </li>
-
-      <!-- Comments -->
+    -->
+      <!-- Comments 
       <li class="nav-item">
         <a class="nav-link" href="{{route('comment.index')}}">
             <i class="fas fa-comments fa-chart-area"></i>
             <span>Compentários</span>
         </a>
       </li>
-
+      -->
 
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
@@ -222,17 +226,20 @@
     <div class="sidebar-heading">
         Gerencia Configurações
     </div>
+    <!-- Heading 
     <li class="nav-item">
       <a class="nav-link" href="{{route('coupon.index')}}">
           <i class="fas fa-table"></i>
           <span>Cupons</span></a>
     </li>
-     <!-- Users -->
+    -->
+     <!-- Users 
      <li class="nav-item">
         <a class="nav-link" href="{{route('users.index')}}">
             <i class="fas fa-users"></i>
             <span>Usuários</span></a>
     </li>
+    -->
      <!-- General settings -->
      <li class="nav-item">
         <a class="nav-link" href="{{route('settings')}}">
